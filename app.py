@@ -222,16 +222,34 @@ with st.sidebar:
     st.markdown("Uses **Groq llama-3.3-70b-versatile**.")
 
 
+# -------------------------------------------------------------------
+# Helper to load local logo
+# -------------------------------------------------------------------
+def get_base64_image(image_path):
+    import base64
+    try:
+        with open(image_path, "rb") as img_file:
+            return base64.b64encode(img_file.read()).decode('utf-8')
+    except Exception:
+        return None
+
+logo_path = str(ROOT / "logo.png")
+logo_b64 = get_base64_image(logo_path)
+logo_img_tag = f"<img src='data:image/png;base64,{logo_b64}' width='80' style='margin-bottom: 10px;'>" if logo_b64 else "<div style='font-size: 60px; margin-bottom: 0px;'>🏛️ ⚖️</div>"
+small_logo_tag = f"<img src='data:image/png;base64,{logo_b64}' width='35' style='margin-right: 12px; border-radius: 4px;'>" if logo_b64 else "<div style='font-size: 24px; margin-right: 12px;'>🏛️</div>"
+
+bot_avatar = logo_path if os.path.exists(logo_path) else "🏛️"
+
 # Display initial hero section if no messages
 if len(st.session_state.messages) == 0:
     st.markdown(
-        "<div class='hero-container'>"
-        "<div style='font-size: 60px; margin-bottom: 0px;'>🏛️ ⚖️</div>"
-        "<h1 style='color: #0c2340; font-size: 42px; font-weight: 800; margin-top: 10px; margin-bottom: 5px;'>GovLens AI</h1>"
-        "<p style='color: #637b96; font-size: 18px; margin-bottom: 25px;'>Budget & Election Information Assistant</p>"
-        "<h2 class='hero-title' style='margin-top: 20px;'>Ask about government budgets and elections</h2>"
-        "<p class='hero-subtitle'>Get data-driven answers backed by official sources</p>"
-        "</div>", 
+        f"<div class='hero-container'>"
+        f"{logo_img_tag}"
+        f"<h1 style='color: #0c2340; font-size: 42px; font-weight: 800; margin-top: 10px; margin-bottom: 5px;'>GovLens AI</h1>"
+        f"<p style='color: #637b96; font-size: 18px; margin-bottom: 25px;'>Budget & Election Information Assistant</p>"
+        f"<h2 class='hero-title' style='margin-top: 20px;'>Ask about government budgets and elections</h2>"
+        f"<p class='hero-subtitle'>Get data-driven answers backed by official sources</p>"
+        f"</div>", 
         unsafe_allow_html=True
     )
 
@@ -251,12 +269,20 @@ if len(st.session_state.messages) == 0:
     if q2: st.session_state.button_clicked = "What percentage of votes did NPP win in the 2020 election?"
     if q3: st.session_state.button_clicked = "Show me the election results for the 2016 presidential election"
     if q4: st.session_state.button_clicked = "How has primary expenditure as a percentage of GDP changed?"
-
+else:
+    # Small rectangular box above active chat
+    st.markdown(
+        f"<div style='display: flex; align-items: center; background-color: #ffffff; border: 1px solid #d0dae5; border-radius: 8px; padding: 10px 15px; margin-bottom: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);'>"
+        f"{small_logo_tag}"
+        f"<h3 style='color: #0c2340; margin: 0; font-weight: 700; font-size: 20px;'>GovLens AI</h3>"
+        f"</div>",
+        unsafe_allow_html=True
+    )
 
 # Display Chat History
 for msg in st.session_state.messages:
     if msg["role"] == "assistant":
-        with st.chat_message("assistant", avatar="🏛️"):
+        with st.chat_message("assistant", avatar=bot_avatar):
             st.markdown(f"**GovLens AI**")
             st.markdown(msg["content"])
             if "chunks" in msg:
