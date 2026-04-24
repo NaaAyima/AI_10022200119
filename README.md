@@ -1,53 +1,88 @@
-# 🏛️ GovLens AI Chatbot
-**CS4241 Introduction to Artificial Intelligence 2026**
-**Student:** [Your Name] | **Index:** [Your Index Number]
+# GovLens: A Retrieval-Augmented Generation Chatbot
 
-A fully functional, end-to-end Retrieval-Augmented Generation (RAG) pipeline built to query institutional documents (the 2025 Ghana National Budget and historical Election Results) with strict factual grounding and hallucination controls.
-
----
-
-## 🏗️ Architecture & System Design (Part F)
-Please view the full architecture diagram (Mermaid) and system justifications in:
-👉 **[`data/processed/reports/architecture.md`](data/processed/reports/architecture.md)**
-
-## ✨ Innovation Component (Part G)
-**Domain-Aware Routing & Scoring Function**
-A custom classification layer intercepts user queries before retrieval. It uses lexical heuristics to classify the query intent as either `budget` or `election`. If a strong intent is detected, it applies a `1.6x` multiplier to the hybrid search score of chunks originating from the matching domain. **This definitively solves "Cross-Domain Contamination" (identified in Part B & E), preventing election queries from retrieving budget education tables.**
-👉 **Located in:** `part_g/innovation.py`
-
-## 📊 Evaluation & Experiment Logs
-All manual experiments, comparative analyses, and adversarial tests have been logged with structured evidence (not AI summaries) in the `data/processed/reports/` directory:
-
-| Report | Purpose |
-| ------ | ------- |
-| **[Part A Analysis](data/processed/reports/chunking_analysis.json)** | Comparative metrics (Lexical richness, chunk distributions) for Sentence vs Fixed vs Paragraph chunking strategies. |
-| **[Part B Failure Analysis](data/processed/reports/failure_analysis.txt)** | Demonstrating 4 retrieval failure classes (Lexical mismatch, Short query, Cross-domain, Entity tokenisation) and fixing them with Query Preprocessing. |
-| **[Part C Prompt Exps](data/processed/reports/prompt_experiments.txt)** | Dual-variable experiment: Comparing 4 Prompt Templates (Baseline to Chain-of-Thought) and 3 Context Strategies (Truncation, Ranking, MMR). |
-| **[Part D Pipeline Logs](data/processed/logs/pipeline_runs.jsonl)** | Raw JSONL traces of full RAG pipeline executions, containing retrieved chunks, execution time (ms), and exact tokens sent to LLM. |
-| **[Part E Adversarial Eval](data/processed/reports/adversarial_evaluation.txt)** | RAG vs Pure LLM comparison on malicious queries (Ambiguous, False Premise). Evaluated on Accuracy, Hallucination count, and Consistency (Jaccard limits). |
+**Student Name:** Jacqueline Naa Ayima Mensah  
+**Index Number:** 10022200119  
+**Course:** CS4241 Introduction to Artificial Intelligence 2026
 
 ---
 
-## 🚀 Running the Chatbot UI (Final Deliverable)
-A sleek, modern interface built with **Streamlit** to demonstrate the exact RAG pipeline built over Part A $\rightarrow$ E, powered by `llama-3.3-70b-versatile`.
+## 📝 Description
+GovLens is a specialized Retrieval-Augmented Generation (RAG) chatbot designed to provide grounded, evidence-based answers regarding Ghana's 2025 National Budget and historical Election Results. By combining semantic vector search with lexical keyword matching, GovLens ensures that AI responses are always tied to official government documentation, effectively eliminating common large language model (LLM) hallucinations.
 
-**Start the Web Interface:**
-1. Ensure your virtual environment is activated and you have added your Groq API key to the `.env` file.
-2. Run the Streamlit application in PowerShell or Git Bash:
-```bash
-PYTHONUTF8=1 .venv/Scripts/python.exe -m streamlit run app.py
-```
+## ✨ Features
+- **Query Input:** Simple natural language interface for complex data retrieval.
+- **Hybrid Retrieval:** Combined FAISS (Vector) and BM25 (Lexical) search for maximum accuracy.
+- **Similarity Scoring:** Real-time visibility into retrieval confidence and document scores.
+- **Context-Based Generation:** LLM responses restricted strictly to verified dataset evidence.
+- **Hallucination Control:** Multi-layer safeguards including similarity thresholds and specialized prompt templates.
+- **Innovation - Domain Router:** Automatic intent classification to prevent cross-domain data contamination.
 
-Try asking it:
-- *"Who won the 2020 Ghana presidential election?"* (This will trigger the Innovation Router to boost election results!)
-- *"What is Ghana's primary expenditure percentage of GDP target for 2025?"*
+## 🛠️ Tech Stack
+- **Core:** Python 3.11
+- **UI:** Streamlit
+- **Embeddings:** Sentence-Transformers (`all-MiniLM-L6-v2`)
+- **Vector DB:** FAISS (IndexFlatIP)
+- **Search Engine:** Rank-BM25
+- **LLM:** Groq API (`llama-3.3-70b-versatile`)
+- **Deployment:** Render.com
+
+## 🚀 How to Run
+### Local Setup
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/NaaAyima/ai_10022200119.git
+   cd ai_10022200119
+   ```
+2. **Environment Configuration:**
+   - Create a `.env` file in the root directory.
+   - Add your Groq API Key: `GROQ_API_KEY=your_key_here`
+3. **Install Dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. **Run the Application:**
+   ```bash
+   PYTHONUTF8=1 .venv/Scripts/python.exe -m streamlit run app.py
+   ```
+
+## 📋 Usage
+1. Enter a question about the budget or elections in the chat box.
+2. View the generated response grounded in official data.
+3. Use the **"🔍 View Retrieved Context"** dropdown to audit the search results.
+4. Provide feedback using the **Yes/No** helpfulness buttons.
+
+## 📂 Project Structure
+- `part_a/`: Data cleaning and semantic chunking strategies.
+- `part_b/`: Hybrid retrieval system (FAISS + BM25).
+- `part_c/`: Prompt engineering and Context Window Manager.
+- `part_d/`: End-to-end RAG pipeline integration.
+- `part_e/`: Critical evaluation and adversarial testing logs.
+- `part_g/`: Innovation component (Domain-Aware Router).
+- `app.py`: Main Streamlit application.
 
 ---
 
-## 🎞️ Recording Your Video Walkthrough
-To record your final 2-minute video:
-1. Start the Streamlit app.
-2. Open the UI, ask 1 question, and open the `View Retrieved Context` dropdown to show the scores.
-3. Show the `architecture.md` Mermaid diagram.
-4. Open the `adversarial_evaluation.txt` to prove you ran quantitative analysis (not just AI summaries).
-5. Explain your **Innovation Component** (`part_g/innovation.py`) and how it fixes cross-domain contamination.
+## 🏛️ Assignment Context
+### MAIN QUESTION: DESIGN A RAG System chatbot (60 MARKS)
+You are tasked to build a RAG AI chat assistant for Academic City.
+- **Dataset:** Ghana Election Result & 2025 Budget Statement.
+- **PART A:** Data cleaning, chunking strategy design, and comparative analysis.
+- **PART B:** Custom retrieval system with FAISS, BM25 Hybrid search, and failure case fixing.
+- **PART C:** Prompt engineering with hallucination control and context window management.
+- **PART D:** Complete RAG pipeline construction and logging.
+- **PART E:** Adversarial testing and RAG vs Pure LLM comparison.
+- **PART F:** Architecture design and system justification.
+- **PART G:** Innovation component (Domain-specific scoring or similar).
+
+**Submission Requirements:**
+- GitHub Repository: `ai_10022200119`
+- Cloud Deployment (Render)
+- Video Walkthrough (Max 2 mins)
+- Detailed Documentation & Experiment Logs
+
+---
+
+## 🗒️ Notes
+- **Scope:** The chatbot's knowledge is strictly bounded by the provided 2025 Budget and Election datasets.
+- **Fallback:** If a query falls outside the dataset scope or below the similarity threshold, the bot returns a standardized refusal to prevent hallucination.
+- **Architecture:** Full technical documentation and Mermaid diagrams are available in `data/processed/reports/architecture.md`.

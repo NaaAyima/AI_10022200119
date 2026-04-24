@@ -1,30 +1,6 @@
 """
 Part B -- Step 3: Failure Analysis & Fix
-CS4241 Introduction to Artificial Intelligence 2026
-Student: [Your Name] | Index: [Your Index Number]
-
-Critical Task (from exam spec):
-  - Show failure cases where retrieval returns irrelevant results
-  - Propose and implement a fix
-
-Failure categories demonstrated
----------------------------------
-F1. Lexical mismatch   -- query uses a synonym not present in corpus
-F2. Ambiguous short    -- one-word query; embedding space too diffuse
-F3. Cross-domain       -- shared vocabulary causes wrong-dataset results
-F4. Exact entity name  -- hyphenated proper noun mis-tokenised by BM25
-
-Fix implemented
----------------
-Query preprocessing:
-  a) Stop-word removal  -- sharpens BM25 IDF matching
-  b) Lowercasing + punctuation strip -- improves tokenisation
-  c) Low-confidence flagging -- vector score < 0.15 marked as unreliable
-
-Outputs (saved to data/processed/reports/)
-------------------------------------------
-  failure_analysis.txt          -- human-readable report
-  failure_analysis_report.json  -- structured JSON
+Student: Jacqueline Naa Ayima Mensah | Index: 10022200119
 """
 
 import importlib.util

@@ -1,25 +1,6 @@
 """
 Part A — Step 2: Chunking Strategy Implementation
-CS4241 Introduction to Artificial Intelligence 2026
-Student: [Your Name] | Index: [Your Index Number]
-
-Three chunking strategies are implemented and compared:
-
-┌─────────────────────┬────────────────────────────────────────────────────────┐
-│ Strategy            │ Config                                                 │
-├─────────────────────┼────────────────────────────────────────────────────────┤
-│ 1. Fixed-Size       │ 512 chars per chunk, 64-char overlap                   │
-│ 2. Sentence-Based   │ 5 sentences per chunk, 1-sentence overlap              │
-│ 3. Paragraph-Based  │ split on blank lines; merge <100 chars; cap at 1500    │
-└─────────────────────┴────────────────────────────────────────────────────────┘
-
-Justification summaries are embedded in each function's docstring.
-
-Outputs (saved to data/processed/chunks/)
------------------------------------------
-  election_chunks.json
-  budget_chunks.json
-  all_chunks.json           — both datasets, all strategies, combined
+Student: Jacqueline Naa Ayima Mensah | Index: 10022200119
 """
 
 import json

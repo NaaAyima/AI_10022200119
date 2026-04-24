@@ -1,33 +1,6 @@
 """
 Part C -- Step 1: Prompt Templates
-CS4241 Introduction to Artificial Intelligence 2026
-Student: [Your Name] | Index: [Your Index Number]
-
-Defines FOUR prompt template iterations for the RAG pipeline.
-Each template targets a specific generation quality property:
-
-  T1 -- Baseline         : minimal structure, no constraints
-  T2 -- Structured       : role + context injection + answer prefix
-  T3 -- Hallucination Guard : explicit "only use context" + refusal rule
-  T4 -- Chain-of-Thought : step-by-step reasoning before final answer
-
-Design Rationale
-----------------
-Prompt engineering is iterative: start minimal (T1), add structure (T2),
-add safety constraints (T3), then add reasoning scaffolding (T4).
-Each iteration is tested on the same queries in Step 3 so that output
-differences can be measured and attributed to specific template changes.
-
-Hallucination Control Strategy (T3, T4)
-----------------------------------------
-1. Role constraint: "You are a factual assistant using ONLY the context."
-2. Explicit refusal instruction: "If not in context, say 'I don't know'."
-3. Evidence anchoring: "Cite the source (election/budget) when possible."
-These three mechanisms together reduce the model's tendency to blend
-retrieved knowledge with its parametric (pre-trained) knowledge.
-
-Context placeholder : {context}   -- filled by context window manager
-Query placeholder   : {query}     -- filled at query time
+Student: Jacqueline Naa Ayima Mensah | Index: 10022200119
 """
 
 from dataclasses import dataclass

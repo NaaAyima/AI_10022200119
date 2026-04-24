@@ -1,48 +1,6 @@
 """
 Part B -- Step 2: Custom Retrieval System
-CS4241 Introduction to Artificial Intelligence 2026
-Student: [Your Name] | Index: [Your Index Number]
-
-Components
-----------
-1. BM25            -- keyword retrieval (implemented from scratch, stdlib only)
-2. VectorRetriever -- FAISS cosine-similarity retrieval
-3. HybridRetriever -- Hybrid Search = alpha*vector + (1-alpha)*BM25
-                      (the chosen extension from the three options)
-
-Why Hybrid Search?
-------------------
-Vector search alone struggles with exact-match queries (e.g., a candidate's
-exact name or a constituency code) because semantic embeddings smooth over
-lexical details.  BM25 alone misses paraphrased queries (e.g., "fiscal
-shortfall" vs "budget deficit").  Combining both scores captures both:
-  - Semantic similarity  (vector component)
-  - Lexical precision    (BM25 component)
-
-BM25 Implementation Notes
---------------------------
-Standard Okapi BM25 (Robertson & Zaragoza, 2009) implemented from scratch
-using only Python stdlib + numpy.  Parameters:
-  k1 = 1.5   (term-frequency saturation; typical range 1.2-2.0)
-  b  = 0.75  (length normalisation; 0=no norm, 1=full norm)
-
-Score combination
------------------
-Both score vectors are min-max normalised to [0, 1] independently before
-combination so neither component dominates due to scale differences:
-  hybrid_score = alpha * vector_norm + (1 - alpha) * bm25_norm
-
-Default alpha = 0.7 (vector-heavy): the embedding model captures semantics
-better than keyword overlap for policy and election domain queries.
-
-Public API
-----------
-  retriever = HybridRetriever.load(embed_dir)
-  results   = retriever.search(query, k=5)
-  retriever.display(results)
-
-Each result dict contains:
-  rank, chunk_id, source, text, vector_score, bm25_score, hybrid_score
+Student: Jacqueline Naa Ayima Mensah | Index: 10022200119
 """
 
 import json

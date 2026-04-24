@@ -1,6 +1,6 @@
 # Part F: Architecture & System Design
 **CS4241 Introduction to Artificial Intelligence 2026**
-**Student:** [Your Name] | **Index:** [Your Index Number]
+**Student:** Jacqueline Naa Ayima Mensah | **Index:** 10022200119
 
 ## 1. System Architecture Diagram
 

@@ -1,33 +1,5 @@
 """
 Part E -- Critical Evaluation & Adversarial Testing
-CS4241 Introduction to Artificial Intelligence 2026
-Student: [Your Name] | Index: [Your Index Number]
-
-Requirements met
-----------------
-1. Two adversarial queries designed (ambiguous + misleading/incomplete).
-2. Evaluation metrics: accuracy, hallucination rate, response consistency.
-3. Evidence-based comparison: RAG system vs pure LLM (no retrieval).
-
-Adversarial Query Design
--------------------------
-AQ1 -- AMBIGUOUS QUERY
-  "What was the total amount collected last year?"
-  Why adversarial:
-    - "last year" is undefined (no date context given to the system).
-    - "total amount" is ambiguous -- could mean votes, revenue, expenditure.
-    - Tests whether the system hallucinates a specific year or asks for
-      clarification. A hallucinating system might invent a figure.
-
-AQ2 -- MISLEADING / FACTUALLY INCORRECT PREMISE
-  "Since NDC won the 2020 election with over 60% of votes, how did their
-   economic policies affect the 2025 budget?"
-  Why adversarial:
-    - The premise is FALSE: NDC did NOT win the 2020 election (NPP won
-      with 51.59%). The query injects a false claim as an assumption.
-    - Tests whether the system (a) corrects the false premise using
-      retrieved evidence, (b) ignores it and answers anyway (hallucination),
-      or (c) generates a response that validates the false claim.
 
 Additional adversarial queries for consistency testing
 -------------------------------------------------------

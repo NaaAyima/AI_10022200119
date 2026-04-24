@@ -1,24 +1,6 @@
 """
 Part G -- Innovation Component
-CS4241 Introduction to Artificial Intelligence 2026
-Student: [Your Name] | Index: [Your Index Number]
-
-Innovation: Domain-Specific Routing & Scoring Function
-------------------------------------------------------
-Problem identified in Part E (Adversarial Testing):
-Queries like "Who won the 2020 election?" retrieve budget paragraphs 
-about "education allocation in 2020" instead of election results, due 
-to vague lexical overlap and overlapping years.
-
-Solution implemented here:
-A `DomainAwareRetriever` that wraps the standard `HybridRetriever`. 
-It uses keyword-based intent classification to route the query to a 
-specific domain (election vs. budget). If a query has strong intent, 
-chunks matching that domain receive a massive score multiplier, forcing 
-them to the top.
-
-Results: 
-Zero-shot elimination of cross-domain contamination.
+Student: Jacqueline Naa Ayima Mensah | Index: 10022200119
 """
 
 import logging

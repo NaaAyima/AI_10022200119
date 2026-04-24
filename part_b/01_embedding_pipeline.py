@@ -1,33 +1,6 @@
 """
 Part B -- Step 1: Embedding Pipeline
-CS4241 Introduction to Artificial Intelligence 2026
-Student: [Your Name] | Index: [Your Index Number]
-
-Embedding model : sentence-transformers  all-MiniLM-L6-v2
-  - 384-dimensional embeddings
-  - ~90 MB download on first run (cached locally after that)
-  - No API key required; runs 100% locally
-
-Vector storage  : FAISS IndexFlatIP
-  - Exact nearest-neighbour search (no approximation)
-  - Inner-Product on L2-normalised vectors == cosine similarity
-  - Appropriate for our corpus size (<5000 chunks)
-
-Chunk strategy used
--------------------
-  Election  -> fixed_size   (219 chunks, avg 510 chars)
-    Reason: uniform size prevents embedding model truncation;
-            election rows are short -- fixed windows preserve full rows.
-  Budget    -> sentence_based (715 chunks, avg 1257 chars)
-    Reason: sentence boundaries preserve semantic coherence in policy text.
-    Note  : chunks >512 tokens are auto-truncated by the model's tokeniser,
-            so a hard cap of 512 chars is applied pre-encoding.
-
-Outputs (saved to data/processed/embeddings/)
----------------------------------------------
-  faiss.index       -- FAISS IndexFlatIP binary
-  metadata.json     -- list of {chunk_id, source, strategy, text, char_count}
-  embed_config.json -- records model name, dims, corpus size
+Student: Jacqueline Naa Ayima Mensah | Index: 10022200119
 """
 
 import json

@@ -1,40 +1,6 @@
 """
 Part C -- Step 3: Prompt Experiments
-CS4241 Introduction to Artificial Intelligence 2026
-Student: [Your Name] | Index: [Your Index Number]
-
-Experiment design
------------------
-  Same 3 queries run through all 4 prompt templates (T1-T4).
-  Each query uses the same retrieved chunks (Strategy 2: ranking),
-  so that output differences are attributable ONLY to the prompt template.
-
-  Then, same query run through all 3 context strategies with the best
-  template (T3) to measure impact of context management.
-
-Queries chosen
---------------
-  Q1 -- Factual election query (exact numbers expected)
-  Q2 -- Budget policy query    (multi-sentence reasoning required)
-  Q3 -- Cross-domain query     (requires distinguishing two datasets)
-
-Metrics recorded per response
-------------------------------
-  - Word count
-  - Sentence count
-  - Contains "I don't know" / refusal phrase  (hallucination check)
-  - Contains source citation ("election" / "budget")
-  - Groq response latency (ms)
-  - Estimated token usage (prompt + completion)
-
-LLM: Groq llama-3.3-70b-versatile
-Context strategy (for template experiment): ranking (Strategy 2)
-Context strategy (for context experiment): all three with T3
-
-Outputs (saved to data/processed/reports/)
-------------------------------------------
-  prompt_experiments.json   -- all raw results
-  prompt_experiments.txt    -- human-readable report (manual experiment log)
+Student: Jacqueline Naa Ayima Mensah | Index: 10022200119
 """
 
 import importlib.util

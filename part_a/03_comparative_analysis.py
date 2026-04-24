@@ -1,27 +1,6 @@
 """
 Part A — Step 3: Comparative Analysis of Chunking Strategies
-CS4241 Introduction to Artificial Intelligence 2026
-Student: [Your Name] | Index: [Your Index Number]
-
-Reads the chunks produced by 02_chunking.py and compares the three strategies
-across six metrics:
-
-  1. Chunk count
-  2. Chunk size distribution (mean ± std, min, max) — characters
-  3. Word count distribution
-  4. Type-Token Ratio (TTR) — vocabulary richness per strategy
-  5. Average unique tokens per chunk — information density
-  6. Simulated keyword retrieval hit-rate (Jaccard similarity, top-3)
-
-Metrics 1–5 are dataset statistics.
-Metric 6 is a *proxy* for retrieval quality — full embedding-based evaluation
-is done in Part B once the vector store exists.
-
-Outputs (saved to data/processed/reports/)
-------------------------------------------
-  chunking_report.json               — all metrics as JSON
-  chunking_comparison_election.png   — 6-panel figure for election data
-  chunking_comparison_budget.png     — 6-panel figure for budget data
+Student: Jacqueline Naa Ayima Mensah | Index: 10022200119
 """
 
 import json

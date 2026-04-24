@@ -1,34 +1,6 @@
 """
 Part D -- Full RAG Pipeline Implementation
-CS4241 Introduction to Artificial Intelligence 2026
-Student: [Your Name] | Index: [Your Index Number]
-
-Pipeline:
-  User Query
-    --> Stage 1: Query Preprocessing  (stop-word removal, normalisation)
-    --> Stage 2: Hybrid Retrieval     (BM25 + FAISS cosine, alpha=0.7)
-    --> Stage 3: Context Selection    (Ranking strategy, score >= 0.20)
-    --> Stage 4: Prompt Construction  (T3 Hallucination Guard template)
-    --> Stage 5: LLM Generation       (Groq llama-3.3-70b-versatile)
-    --> Stage 6: Response + Logging   (full pipeline log to JSON + txt)
-
-Additional constraints met
----------------------------
-  - Logging at each stage (timestamped, structured)
-  - Retrieved documents displayed with similarity scores
-  - Final prompt sent to LLM displayed verbatim
-  - All pipeline runs saved to data/processed/logs/pipeline_runs.jsonl
-
-Usage (interactive)
--------------------
-  python part_d/pipeline.py
-  python part_d/pipeline.py --query "Who won the 2020 Ghana election?"
-
-Usage (as module)
------------------
-  from part_d.pipeline import RAGPipeline
-  pipeline = RAGPipeline.load()
-  result   = pipeline.run("Your question here")
+Student: Jacqueline Naa Ayima Mensah | Index: 10022200119
 """
 
 import argparse

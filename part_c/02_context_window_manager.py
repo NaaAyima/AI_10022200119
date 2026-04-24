@@ -1,40 +1,6 @@
 """
 Part C -- Step 2: Context Window Manager
-CS4241 Introduction to Artificial Intelligence 2026
-Student: [Your Name] | Index: [Your Index Number]
-
-Manages how retrieved chunks are selected, ranked, filtered, and
-formatted before being injected into a prompt template.
-
-Three management strategies are implemented and compared:
-
-  Strategy 1 -- Truncation
-    Take top-k chunks from the retriever, concatenate, hard-cut at
-    max_chars characters.  Simple but may slice mid-sentence.
-
-  Strategy 2 -- Score-Based Ranking + Threshold Filtering
-    Only include chunks whose hybrid_score >= min_score threshold.
-    Sort by descending score so the most relevant content appears
-    first in the context window (recency / position bias in LLMs
-    means earlier content is attended to more strongly).
-
-  Strategy 3 -- MMR-style Diversity Filter
-    Maximal Marginal Relevance (simplified, no embeddings needed here):
-    iteratively select the next chunk that is (a) above min_score AND
-    (b) not a near-duplicate of an already-selected chunk.  Prevents
-    redundant context blocks from eating the window budget.
-
-Design rationale for context window size
------------------------------------------
-llama-3.3-70b-versatile has a 128k-token context window.
-However, prompt + context + completion should fit in one request.
-We cap context at 3000 chars (~750 tokens) to leave room for:
-  - System message (~150 tokens)
-  - Query (~50 tokens)
-  - Response (~500 tokens)
-Total estimated: ~1450 tokens << 128k limit.
-Using a smaller context window also forces the manager to select
-the most relevant chunks rather than dumping everything.
+Student: Jacqueline Naa Ayima Mensah | Index: 10022200119
 """
 
 import re

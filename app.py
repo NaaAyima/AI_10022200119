@@ -1,6 +1,6 @@
 """
 GovLens AI - UI (Final Deliverable)
-Student: [Your Name] | Index: [Your Index Number]
+Student: Jacqueline Naa Ayima Mensah | Index: 10022200119
 """
 
 import os

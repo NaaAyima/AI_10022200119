@@ -1,38 +1,6 @@
 """
 Part A — Step 1: Data Engineering & Cleaning
-CS4241 Introduction to Artificial Intelligence 2026
-Student: [Your Name] | Index: [Your Index Number]
-
-Datasets
---------
-1. Ghana Election Results  (CSV)
-   Source: https://github.com/GodwinDansoAcity/acitydataset/blob/main/Ghana_Election_Result.csv
-
-2. 2025 Ghana Budget Statement  (PDF)
-   Source: https://mofep.gov.gh/sites/default/files/budget-statements/
-           2025-Budget-Statement-and-Economic-Policy_v4.pdf
-
-Cleaning Steps
---------------
-CSV:
-  - Encoding fallback (UTF-8 → latin-1)
-  - Normalise column names
-  - Drop fully-empty and duplicate rows
-  - Strip whitespace & NFKC-normalise string cells
-  - Remove non-printable control characters
-  - Convert rows to natural-language text records for RAG
-PDF:
-  - Page-by-page extraction with PyMuPDF
-  - Fix hyphenated line breaks
-  - Remove header/footer noise (short lines at page boundaries)
-  - Collapse excessive whitespace
-  - Filter near-empty pages
-
-Outputs (saved to data/processed/cleaned/)
-------------------------------------------
-  Ghana_Election_cleaned.csv
-  election_text_records.json   — one text blob per CSV row
-  budget_pages.json            — one text blob per PDF page
+Student: Jacqueline Naa Ayima Mensah | Index: 10022200119
 """
 
 import json
