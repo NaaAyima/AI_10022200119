@@ -1,5 +1,5 @@
 """
-Academic City RAG Chatbot - UI (Final Deliverable)
+GovLens AI - UI (Final Deliverable)
 Student: [Your Name] | Index: [Your Index Number]
 """
 
@@ -12,7 +12,6 @@ import streamlit as st
 import faiss
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
-
 import importlib.util
 
 # Set paths
@@ -31,7 +30,6 @@ def load_rag_pipeline():
     spec_g.loader.exec_module(mod_g)
     DomainAwareRetriever = mod_g.DomainAwareRetriever
 
-    # Load Context Window Manager & Prompts from Part C
     spec_c1 = importlib.util.spec_from_file_location("prompts", str(ROOT / "part_c" / "01_prompt_templates.py"))
     mod_c1 = importlib.util.module_from_spec(spec_c1)
     spec_c1.loader.exec_module(mod_c1)
@@ -42,7 +40,6 @@ def load_rag_pipeline():
     spec_c2.loader.exec_module(mod_c2)
     ContextWindowManager = mod_c2.ContextWindowManager
 
-    # Load Pipeline LLM Caller from Part E (since it has call_llm isolated)
     spec_e = importlib.util.spec_from_file_location("eval", str(ROOT / "part_e" / "evaluation.py"))
     mod_e = importlib.util.module_from_spec(spec_e)
     spec_e.loader.exec_module(mod_e)
@@ -55,7 +52,6 @@ def load_rag_pipeline():
         meta = json.load(fh)
     model = SentenceTransformer("all-MiniLM-L6-v2")
 
-    # Instantiate
     retriever = DomainAwareRetriever(index, meta, model, alpha=0.7)
     cwm = ContextWindowManager(strategy="ranking", max_chars=3000, min_score=0.20, top_k=5)
 
@@ -63,27 +59,171 @@ def load_rag_pipeline():
 
 
 # -------------------------------------------------------------------
-# Streamlit Interface
+# Streamlit Interface & Custom CSS (Gold & Blue Theme)
 # -------------------------------------------------------------------
-st.set_page_config(page_title="Academic City AI", page_icon="🎓", layout="wide")
+st.set_page_config(page_title="GovLens AI", page_icon="🏛️", layout="wide")
 
-st.title("🎓 Academic City RAG Chatbot")
-st.markdown("*A highly grounded AI assistant fetching real data from National Budgets and Election Results.*")
+st.markdown("""
+<style>
+    /* Main Background Pattern - very light blue grey */
+    .stApp {
+        background-color: #f4f7f9;
+        color: #0c2340;
+    }
+    
+    /* Elegant Header Container */
+    .header-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 20px 0;
+        border-bottom: 1px solid #d0dae5;
+        margin-bottom: 40px;
+    }
+    .header-icon {
+        background-color: #e5eef7;
+        color: #0c2340;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-size: 24px;
+        font-weight: bold;
+        border: 2px solid #0c2340;
+    }
+    .header-title {
+        color: #0c2340;
+        font-size: 28px;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+    }
+    .header-subtitle {
+        color: #637b96;
+        font-size: 15px;
+        margin: 0;
+        padding: 0;
+    }
 
-# Handle missing API Key gracefully
+    /* Hero Section */
+    .hero-container {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+    .hero-icon {
+        font-size: 50px;
+        color: #0c2340;
+        margin-bottom: 10px;
+    }
+    .hero-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #0c2340;
+        margin-bottom: 10px;
+    }
+    .hero-subtitle {
+        color: #637b96;
+        font-size: 16px;
+    }
+
+    /* Cards */
+    .stCard {
+        background-color: #ffffff;
+        border: 1px solid #d0dae5;
+        border-radius: 10px;
+        padding: 20px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        color: #0c2340;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .stCard:hover {
+        border-color: #d4af37; /* Gold border on hover */
+        box-shadow: 0 6px 12px -2px rgba(212, 175, 55, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /* Chat Messages styling */
+    .stChatMessage {
+        background-color: transparent !important;
+    }
+    .stChatMessage[data-testid="stChatMessage"]:nth-child(even) {
+        background-color: rgba(212, 175, 55, 0.05) !important; /* light gold tint for assistant */
+        border-left: 4px solid #d4af37;
+        padding-left: 1rem;
+        border-radius: 4px;
+    }
+    .stChatMessage[data-testid="stChatMessage"]:nth-child(odd) {
+        border-left: 4px solid #0c2340;
+        padding-left: 1rem;
+        border-radius: 4px;
+    }
+    
+    /* Input Area - Gold Accent */
+    .stChatInputContainer {
+        border: 1px solid #d0dae5 !important;
+        border-radius: 8px !important;
+    }
+    .stChatInputContainer:focus-within {
+        border: 2px solid #d4af37 !important; /* Gold focus */
+        box-shadow: 0 0 0 1px #d4af37 !important;
+    }
+
+    /* Buttons */
+    .stButton>button {
+        background-color: #637b96;
+        color: white;
+        border-radius: 6px;
+        border: none;
+    }
+    .stButton>button:hover {
+        background-color: #0c2340;
+        color: #d4af37;
+    }
+
+    /* Expander styling */
+    .streamlit-expanderHeader {
+        color: #0c2340 !important;
+        background-color: #ffffff !important;
+        border: 1px solid #d0dae5 !important;
+        border-radius: 6px;
+    }
+    
+    /* Primary colour overrides for Streamlit elements */
+    :root {
+        --primary-color: #d4af37; /* Gold */
+        --text-color: #0c2340;    /* Navy Blue */
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# -------------------------------------------------------------------
+# Header HTML
+# -------------------------------------------------------------------
+st.markdown("""
+<div class="header-container">
+    <div class="header-icon">🏛️ ⚖️</div>
+    <div>
+        <h1 class="header-title">GovLens AI</h1>
+        <p class="header-subtitle">Budget & Election Information Assistant</p>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
 if not os.getenv("GROQ_API_KEY"):
     st.error("Missing GROQ_API_KEY in `.env` file. Please add it to talk to the LLM.")
     st.stop()
 
 retriever, cwm, T3_Prompt, call_llm = load_rag_pipeline()
 
-# Session State for Chat History
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Sidebar
+
 with st.sidebar:
-    st.header("Pipeline Settings")
+    st.markdown("<h2 style='color:#0c2340;'>Pipeline Settings</h2>", unsafe_allow_html=True)
     st.markdown("**Part D & G Pipeline Options**")
     
     alpha = st.slider("Hybrid Search Vector Weight (α)", 0.0, 1.0, 0.7, 0.1, help="1.0 = Pure Vector, 0.0 = Pure BM25 Keyword")
@@ -96,6 +236,31 @@ with st.sidebar:
     st.markdown("Retrieves exact cosine similarity using **FAISS IndexFlatIP** and **BM25**.")
     st.markdown("Uses **Groq llama-3.3-70b-versatile**.")
 
+
+# Display initial hero section if no messages
+if len(st.session_state.messages) == 0:
+    st.markdown("""
+    <div class="hero-container">
+        <div class="hero-icon">💬</div>
+        <h2 class="hero-title">Ask about government budgets and elections</h2>
+        <p class="hero-subtitle">Get data-driven answers backed by official sources</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # 4 Suggested Questions
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown('<div class="stCard">What is the total national budget projection for 2025?</div>', unsafe_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown('<div class="stCard">What percentage of votes did NPP win in the 2020 election?</div>', unsafe_allow_html=True)
+    with col2:
+        st.markdown('<div class="stCard">Show me the election results for the 2016 presidential election</div>', unsafe_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown('<div class="stCard">How has primary expenditure as a percentage of GDP changed?</div>', unsafe_allow_html=True)
+    
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+
 # Display Chat History
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
@@ -107,27 +272,26 @@ for msg in st.session_state.messages:
                     st.markdown(f"**Source**: `{c['source']}` | **Score**: `{c['hybrid_score']:.3f}` {boost_tag}")
                     st.text(c['text'])
 
-# Input
-if prompt := st.chat_input("Ask about the 2025 budget or past election results..."):
+
+# Input area
+prompt = st.chat_input("Ask about budgets, elections, or policy data...")
+
+if prompt:
     # Add user message
     st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.markdown(prompt)
+    st.rerun()
 
-    # Process and respond
+# Process new user input if it exists
+if len(st.session_state.messages) > 0 and st.session_state.messages[-1]["role"] == "user":
+    user_prompt = st.session_state.messages[-1]["content"]
+    
     with st.chat_message("assistant"):
         with st.spinner("Searching corpus..."):
-            # 1. Retrieve
-            chunks = retriever.search(prompt, k=5)
-            
-            # 2. Context Window Management
+            chunks = retriever.search(user_prompt, k=5)
             context, meta = cwm.build_context(chunks)
+            msgs = T3_Prompt.to_messages(context, user_prompt)
 
-            # 3. Prompting
-            msgs = T3_Prompt.to_messages(context, prompt)
-
-        with st.spinner("AI is thinking..."):
-            # 4. Generate
+        with st.spinner("AI is determining answer..."):
             llm_response = call_llm(msgs, max_tokens=512)
             final_text = llm_response.get("text", "Error talking to Groq.")
 
@@ -146,3 +310,4 @@ if prompt := st.chat_input("Ask about the 2025 budget or past election results..
         "content": final_text,
         "chunks": chunks
     })
+    
