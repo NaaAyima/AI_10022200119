@@ -333,15 +333,23 @@ if prompt:
 if len(st.session_state.messages) > 0 and st.session_state.messages[-1]["role"] == "user":
     user_prompt = st.session_state.messages[-1]["content"]
     
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar=bot_avatar):
         with st.spinner("Searching corpus..."):
             chunks = retriever.search(user_prompt, k=5)
             context, meta = cwm.build_context(chunks)
+            
+        if not context.strip():
+            # Short-circuit logic: chunks were below the 0.20 score threshold
+            final_text = "No matching evidence found in the dataset. I only respond based on verified retrieved information."
+        else:
             msgs = T3_Prompt.to_messages(context, user_prompt)
-
-        with st.spinner("AI is determining answer..."):
-            llm_response = call_llm(msgs, max_tokens=512)
-            final_text = llm_response.get("text", "Error talking to Groq.")
+            with st.spinner("AI is determining answer..."):
+                llm_response = call_llm(msgs, max_tokens=512)
+                final_text = llm_response.get("text", "Error talking to Groq.")
+                
+            # Fallback if the LLM hallucination guard stops the generation
+            if "INSUFFICIENT" in final_text.upper():
+                final_text = "No matching evidence found in the dataset. I only respond based on verified retrieved information."
 
         st.markdown(final_text)
 
