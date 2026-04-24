@@ -1,4 +1,4 @@
-# 🎓 Academic City RAG AI Chatbot
+# 🏛️ GovLens AI Chatbot
 **CS4241 Introduction to Artificial Intelligence 2026**
 **Student:** [Your Name] | **Index:** [Your Index Number]
 
