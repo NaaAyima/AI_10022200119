@@ -230,13 +230,18 @@ def get_base64_image(image_path):
     try:
         with open(image_path, "rb") as img_file:
             return base64.b64encode(img_file.read()).decode('utf-8')
-    except Exception:
+    except Exception as e:
+        st.error(f"Error loading image '{image_path}': {e}")
         return None
 
-logo_path = str(ROOT / "logo.png")
+# Try direct path first, then ROOT path
+logo_path = "logo.png"
+if not os.path.exists(logo_path):
+    logo_path = str(ROOT / "logo.png")
+
 logo_b64 = get_base64_image(logo_path)
-logo_img_tag = f"<img src='data:image/png;base64,{logo_b64}' width='80' style='margin-bottom: 10px;'>" if logo_b64 else "<div style='font-size: 60px; margin-bottom: 0px;'>🏛️ ⚖️</div>"
-small_logo_tag = f"<img src='data:image/png;base64,{logo_b64}' width='35' style='margin-right: 12px; border-radius: 4px;'>" if logo_b64 else "<div style='font-size: 24px; margin-right: 12px;'>🏛️</div>"
+logo_img_tag = f"<img src='data:image/png;base64,{logo_b64}' width='300' style='margin-bottom: 5px;'>" if logo_b64 else "<div style='font-size: 60px; margin-bottom: 0px;'>🏛️ ⚖️</div>"
+small_logo_tag = f"<img src='data:image/png;base64,{logo_b64}' width='35' height='35' style='margin-right: 12px; border-radius: 4px; object-fit: contain;'>" if logo_b64 else "<div style='font-size: 24px; margin-right: 12px;'>🏛️</div>"
 
 bot_avatar = logo_path if os.path.exists(logo_path) else "🏛️"
 
