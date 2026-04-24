@@ -280,7 +280,7 @@ else:
     )
 
 # Display Chat History
-for msg in st.session_state.messages:
+for i, msg in enumerate(st.session_state.messages):
     if msg["role"] == "assistant":
         with st.chat_message("assistant", avatar=bot_avatar):
             st.markdown(f"**GovLens AI**")
@@ -291,6 +291,21 @@ for msg in st.session_state.messages:
                         boost_tag = "🚀 Boosted (Domain Router)" if c.get("innovation_boost") else ""
                         st.markdown(f"**Source**: `{c['source']}` | **Score**: `{c['hybrid_score']:.3f}` {boost_tag}")
                         st.text(c['text'])
+            
+            # Feedback Loop UI
+            if "feedback" not in msg:
+                st.markdown("<p style='font-size: 14px; color: #637b96; margin-bottom: 5px; margin-top: 15px;'>Was this answer helpful?</p>", unsafe_allow_html=True)
+                col1, col2, _ = st.columns([1, 1, 8])
+                with col1:
+                    if st.button("Yes", key=f"yes_{i}"):
+                        msg["feedback"] = "yes"
+                        st.rerun()
+                with col2:
+                    if st.button("No", key=f"no_{i}"):
+                        msg["feedback"] = "no"
+                        st.rerun()
+            else:
+                st.markdown("<p style='font-size: 14px; color: #d4af37; font-weight: 500; margin-top: 15px;'>Thank you for your feedback!</p>", unsafe_allow_html=True)
     else:
         with st.chat_message("user", avatar="👤"):
             st.markdown(f"**You**")
