@@ -224,16 +224,16 @@ with st.sidebar:
 
 # Display initial hero section if no messages
 if len(st.session_state.messages) == 0:
-    st.markdown("""
-    <div class="hero-container">
-        <div style="font-size: 60px; margin-bottom: 0px;">🏛️ ⚖️</div>
-        <h1 style="color: #0c2340; font-size: 42px; font-weight: 800; margin-top: 10px; margin-bottom: 5px;">GovLens AI</h1>
-        <p style="color: #637b96; font-size: 18px; margin-bottom: 25px;">Budget & Election Information Assistant</p>
-        
-        <h2 class="hero-title" style="margin-top: 20px;">Ask about government budgets and elections</h2>
-        <p class="hero-subtitle">Get data-driven answers backed by official sources</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(
+        "<div class='hero-container'>"
+        "<div style='font-size: 60px; margin-bottom: 0px;'>🏛️ ⚖️</div>"
+        "<h1 style='color: #0c2340; font-size: 42px; font-weight: 800; margin-top: 10px; margin-bottom: 5px;'>GovLens AI</h1>"
+        "<p style='color: #637b96; font-size: 18px; margin-bottom: 25px;'>Budget & Election Information Assistant</p>"
+        "<h2 class='hero-title' style='margin-top: 20px;'>Ask about government budgets and elections</h2>"
+        "<p class='hero-subtitle'>Get data-driven answers backed by official sources</p>"
+        "</div>", 
+        unsafe_allow_html=True
+    )
 
     # 4 Suggested Questions as clickable buttons
     col1, col2 = st.columns(2)
