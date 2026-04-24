@@ -170,7 +170,7 @@ st.markdown("""
         width: 100%;
         height: 100%;
         text-align: left;
-        padding: 15px;
+        padding: 10px;
         font-weight: 500;
         transition: all 0.2s ease;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
@@ -240,7 +240,7 @@ if not os.path.exists(logo_path):
     logo_path = str(ROOT / "logo.png")
 
 logo_b64 = get_base64_image(logo_path)
-logo_img_tag = f"<img src='data:image/png;base64,{logo_b64}' width='300' style='margin-bottom: 5px;'>" if logo_b64 else "<div style='font-size: 60px; margin-bottom: 0px;'>🏛️ ⚖️</div>"
+logo_img_tag = f"<img src='data:image/png;base64,{logo_b64}' width='140' style='margin-bottom: 0px;'>" if logo_b64 else "<div style='font-size: 60px; margin-bottom: 0px;'>🏛️ ⚖️</div>"
 small_logo_tag = f"<img src='data:image/png;base64,{logo_b64}' width='35' height='35' style='margin-right: 12px; border-radius: 4px; object-fit: contain;'>" if logo_b64 else "<div style='font-size: 24px; margin-right: 12px;'>🏛️</div>"
 
 bot_avatar = logo_path if os.path.exists(logo_path) else "🏛️"
@@ -248,12 +248,12 @@ bot_avatar = logo_path if os.path.exists(logo_path) else "🏛️"
 # Display initial hero section if no messages
 if len(st.session_state.messages) == 0:
     st.markdown(
-        f"<div class='hero-container'>"
+        f"<div class='hero-container' style='margin-top: 0px; margin-bottom: 20px;'>"
         f"{logo_img_tag}"
-        f"<h1 style='color: #0c2340; font-size: 42px; font-weight: 800; margin-top: 10px; margin-bottom: 5px;'>GovLens AI</h1>"
-        f"<p style='color: #637b96; font-size: 18px; margin-bottom: 25px;'>Budget & Election Information Assistant</p>"
-        f"<h2 class='hero-title' style='margin-top: 20px;'>Ask about government budgets and elections</h2>"
-        f"<p class='hero-subtitle'>Get data-driven answers backed by official sources</p>"
+        f"<h1 style='color: #0c2340; font-size: 32px; font-weight: 800; margin-top: 5px; margin-bottom: 0px;'>GovLens AI</h1>"
+        f"<p style='color: #637b96; font-size: 16px; margin-bottom: 15px;'>Budget & Election Information Assistant</p>"
+        f"<h2 class='hero-title' style='margin-top: 10px; font-size: 20px;'>Ask about government budgets & elections</h2>"
+        f"<p class='hero-subtitle' style='margin-bottom: 10px;'>Get data-driven answers backed by official sources</p>"
         f"</div>", 
         unsafe_allow_html=True
     )
@@ -266,8 +266,6 @@ if len(st.session_state.messages) == 0:
     with col2:
         q3 = st.button("Show me the election results for the 2016 presidential election")
         q4 = st.button("How has primary expenditure as a percentage of GDP changed?")
-    
-    st.markdown("<br><br>", unsafe_allow_html=True)
     
     # If a button is clicked, set it as the prompt
     if q1: st.session_state.button_clicked = "What is the total national budget projection for 2025?"
