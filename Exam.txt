@@ -1,0 +1,126 @@
+Instructions :      
+This is a project-based examination. You are required to answer all questions. Your solutions should 
+incorporate the methodologies, technologies, and criteria specified. Your project will demonstrate your 
+ability to apply  Artificial Intelligence concepts , theories and tools.  
+Submit your solution to github and deploy the solution to the cloud.  The repository name should be 
+ai_index number . where index number is your student index number. Also include your name and 
+index number in the readme file and every file. 
+You are to submit unique work. Any duplicated work , coping  of someone's work will result in low or 
+no marks 
+You are to share both your GitHub (repository) ,the deployed solutions(URL) links and any other 
+documentations with  the  email: godwin.danso@acity.edu.gh.  
+The  email  title  or subject  should  be:CS4241-Introduction to Artificial Intelligence-2026:[insert 
+your index  and name] 
+Add or invite godwin.danso@acity.edu.gh or GodwinDansoAcity  as a GitHub collaborator.  
+Failure to do so will result in getting nothing for your exams. 
+Design and implement a RAG application that allows users to chat with your app  
+• You must include:  
+o A video walkthrough (not more than 2 minutes) explaining your design decisions  
+and  the  solutions 
+o Manual experiment logs (not AI-generated summaries)  
+Important Constraint: 
+You are NOT allowed to use end-to-end frameworks such as LangChain, LlamaIndex, or pre-built 
+RAG pipelines. 
+You must implement core RAG components manually (retrieval, chunking, embedding logic, 
+prompt construction). 
+1 
+ 
+MAIN QUESTION: DESIGN A  RAG System chatbot (60 MARKS) 
+You are tasked to build a RAG  AI chat assistant for Academic City. 
+• Use  the following dataset for  the  project: 
+o https://github.com/GodwinDansoAcity/acitydataset/blob/main/Ghana_Election_Result.csv 
+o https://mofep.gov.gh/sites/default/files/budget-statements/2025-Budget-Statement-and
+Economic-Policy_v4.pdf 
+PART A: DATA ENGINEERING & PREPARATION (4 MARKS) 
+Requirements: 
+1. Perform:  
+o Data cleaning  
+o Chunking strategy design (justify chunk size and overlap)  
+2. Implement  your chunking strategies .  
+Deliverables: 
+• Code implementation  
+• Justification of design decisions  
+• Comparative analysis of chunking impact on retrieval quality  
+PART B: CUSTOM RETRIEVAL SYSTEM (6 MARKS) 
+Requirements: 
+1. Implement your own:  
+o Embedding pipeline (e.g., sentence transformers or OpenAI embeddings)  
+o Vector storage (FAISS / Chroma / custom structure)  
+2. Implement:  
+o Top-k retrieval  
+o Similarity scoring  
+3. Extend retrieval with ONE of the following:  
+o Query expansion  
+o Re-ranking  
+2 
+o Hybrid search (keyword + vector)  
+LG - Public 
+Critical Task: 
+• Show failure cases where retrieval returns irrelevant results  
+• Propose and implement a fix  
+PART C: PROMPT ENGINEERING & GENERATION (4 MARKS) 
+Requirements: 
+1. Design a prompt template that:  
+o Injects retrieved context  
+o Handles hallucination control  
+2. Implement:  
+o Context window management (truncate, rank, or filter chunks)  
+3. Conduct experiments:  
+o Same query with different prompts  
+o Analyze output differences  
+Deliverables: 
+• Prompt design iterations  
+• Evidence of improvement  
+PART D: FULL RAG PIPELINE IMPLEMENTATION (10 MARKS) 
+Requirements: 
+Build a complete pipeline: 
+User Query → Retrieval → Context Selection → Prompt → LLM → Response 
+Additional Constraints: 
+• Implement logging at each stage  
+• Display:  
+o Retrieved documents  
+o Similarity scores  
+o Final prompt sent to LLM  
+PART E: CRITICAL EVALUATION & ADVERSARIAL TESTING (6 MARKS) 
+Requirements: 
+1. Design 2 adversarial queries, such as:  
+3 
+o Ambiguous queries  
+o Misleading or incomplete queries  
+
+2. Evaluate:  
+o Accuracy  
+o Hallucination rate  
+o Response consistency  
+3. Compare:  
+o Your RAG system vs pure LLM (no retrieval)  
+You must provide evidence-based comparison, not opinion. 
+PART F: ARCHITECTURE & SYSTEM DESIGN (8 MARKS) 
+Requirements: 
+• Draw and explain your architecture:  
+o Data flow  
+o Components interaction  
+• Justify:  
+o Why your design is suitable for the chosen domain  
+PART G: INNOVATION COMPONENT (6 MARKS) 
+Introduce ONE novel feature, such as: 
+• Feedback loop for improving retrieval  
+• Memory-based RAG  
+• Multi-step reasoning (chain-of-thought orchestration)  
+• Domain-specific scoring function  
+FINAL DELIVERABLES (16 marks) 
+i. 
+Application (4 Marks) 
+• The  GitHub solution 
+• Simple UI (Streamlit / Next.js / Flask)  
+• Features:  
+o Query input  
+o Display retrieved chunks  
+4 
+o Show final response 
+
+ii. A video walkthrough (not more than 2 minutes) explaining your design decisions  and  the  
+solutions[ 4 marks] 
+iii. Manual experiment logs (not AI-generated summaries) [4 marks] 
+iv. Documentation(detailed not simple AI-generated summaries)[4 marks] 
+v. The  architecture (marks, see  part F)

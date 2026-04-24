@@ -1,0 +1,10 @@
+{
+  "model": "all-MiniLM-L6-v2",
+  "dim": 384,
+  "corpus_size": 934,
+  "datasets": {
+    "election": "fixed_size",
+    "budget": "sentence_based"
+  },
+  "index_type": "IndexFlatIP (cosine similarity via L2-normalisation)"
+}

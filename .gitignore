@@ -1,0 +1,13 @@
+# Environment / secrets -- NEVER commit these
+.env
+
+# Python virtual environment
+.venv/
+
+# Downloaded model data
+data/raw/
+__pycache__/
+*.pyc
+*.pyo
+.idea/
+.vscode/

@@ -1,0 +1,289 @@
+========================================================================
+  PART C -- STEP 3: PROMPT EXPERIMENT RESULTS
+========================================================================
+
+  EXPERIMENT A: Same Query, Different Prompt Templates
+  (Context strategy fixed: ranking, max_chars=3000)
+  --------------------------------------------------------------------
+
+  Query [Q1_election_factual]:
+  "Who won the 2020 Ghana presidential election and what percentage of votes did they receive?"
+  Expected: Nana Addo / Akufo-Addo, NPP, ~51.59%
+
+  Template                      Words  Sents  Refusal  Numbers  Specul.    Latency
+  ---------------------------------------------------------------------------
+  T1_Baseline                     253     16      YES      YES        0     2436ms
+  T2_Structured                    86      5       no      YES        0      955ms
+  T3_Hallucination_Guard          188      7       no      YES        0     2175ms
+  T4_Chain_of_Thought             303     16       no      YES        0     1881ms
+
+  --- Responses ---
+
+  [T1_Baseline]
+    To determine the winner of the 2020 Ghana presidential election, we need to look at the documents provided, specifically those related to the election (Documents 2, 4, and 5). 
+    
+    From Document 2, we see that in the Central Region:
+    - Nana Akufo Addo (NPP) received 52.31% of the votes.
+    - John Dramani Mahama (NDC) received 45.92% of the votes.
+    
+    From Document 5, looking at the Volta Region:
+    - Nana Akufo Addo (NPP) received 14.05% of the votes.
+    - John Dramani Mahama (NDC) received 84.83% of the votes.
+    
+    While these documents do not provide a comprehensive national overview, they suggest a competitive election between Nana Akufo Addo (NPP) and John Dramani Mahama (NDC). However, without national totals, we cannot definitively declare a winner based solely on these excerpts.
+    
+    But, considering typical election analysis and the fact that these regions are mentioned, it's reasonable to infer that the competition is between NPP and NDC, with Nana Akufo Addo and John Dramani Mahama being the primary candidates. Given the information provided and knowing that Nana Akufo Addo won the 2020 election in real-world context (though not explicitly stated in the provided documents), we can make an educated guess:
+    
+    Nana Akufo Addo won the 2020 Ghana presidential election. However, the exact percentage of votes he received nationwide is not provided in the given documents. Based on real-world knowledge (outside of the provided documents), Nana Akufo Addo won with 51.59% of the votes, but this specific percentage is not mentioned in the documents provided.
+
+  [T2_Structured]
+    Nana Akufo Addo won the 2020 Ghana presidential election in the Central Region with 52.31% of the votes. However, to confirm if he won the overall election, we need to look at the overall votes, not just the Central Region. Since the documents do not provide the overall national results, we cannot conclusively determine the national winner based on the given information. Nonetheless, in the context of the provided documents, Nana Akufo Addo is shown to have received the most votes in the Central Region.
+
+  [T3_Hallucination_Guard]
+    According to the provided documents, specifically [Document 2 | source: election], in the Central Region, Nana Akufo Addo from the NPP party received 52.31% of the votes, and John Dramani Mahama from the NDC party received 45.92% of the votes. However, to determine the overall winner of the 2020 Ghana presidential election, we need to look at the national results, which are not fully provided in the given context. 
+    
+    But since [Document 2 | source: election] provides information on the Central Region and [Document 5 | source: election] provides information on the Volta Region, both showing Nana Akufo Addo and John Dramani Mahama as the top contenders, and given that [Document 2 | source: election] shows Nana Akufo Addo with a higher percentage in the Central Region, we can infer that Nana Akufo Addo might have won, but the provided documents do not give a comprehensive national picture.
+    
+    Thus, based on the limited information, Nana Akufo Addo is shown to have received 52.31% of the votes in the Central Region [Document 2 | source: election], but without national results, this does not definitively answer the question for the entire country.
+
+  [T4_Chain_of_Thought]
+    ## Step 1: Identify relevant context passages
+    The relevant context passages for the question about the 2020 Ghana presidential election are found in Document 2 and Document 5, as they contain information about the election results for different regions.
+    
+    ## Step 2: Extract key facts
+    From Document 2, we can extract the following key facts for the Central Region:
+    - Nana Akufo Addo (NPP) received 613,804 votes, which is 52.31% of the votes.
+    - John Dramani Mahama (NDC) received 538,829 votes, which is 45.92% of the votes.
+    
+    From Document 5, we can extract the following key facts for the Volta Region:
+    - Nana Akufo Addo (NPP) received 100,481 votes, which is 14.05% of the votes.
+    - John Dramani Mahama (NDC) received 606,508 votes, which is 84.83% of the votes.
+    
+    However, to determine the overall winner of the 2020 Ghana presidential election, we need to consider the national results, not just regional results. Document 2 provides a more comprehensive overview of the election results, including the votes and percentages for the major candidates in the Central Region, which can be used as a proxy for the national outcome given the information available.
+    
+    ## Step 3: Synthesise the answer
+    Given the information provided in Document 2, which shows Nana Akufo Addo (NPP) leading in the Central Region with 52.31% of the votes, and considering that this document provides the most direct information about the election outcome among the given documents, we can infer that Nana Akufo Addo won the 2020 Ghana presidential election. However, the exact national percentage might not be directly inferred from the regional data provided, but based on the pattern and the fact that Document 2 gives a detailed breakdown for a significant region, it suggests Akufo Addo's victory.
+    
+    The final answer is: $\boxed{Nana Akufo Addo, 52.31%}$
+
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Query [Q2_budget_policy]:
+  "What is Ghana's total revenue projection for 2025 and how will the government reduce the fiscal deficit?"
+  Expected: GH 224.9 billion revenue; deficit reduction strategy
+
+  Template                      Words  Sents  Refusal  Numbers  Specul.    Latency
+  ---------------------------------------------------------------------------
+  T1_Baseline                     177     14       no      YES        0     1175ms
+  T2_Structured                   112     10       no      YES        0     1107ms
+  T3_Hallucination_Guard          124      9      YES      YES        0     1090ms
+  T4_Chain_of_Thought             310     18       no      YES        0     2244ms
+
+  --- Responses ---
+
+  [T1_Baseline]
+    The provided documents do not explicitly mention Ghana's total revenue projection for 2025. However, according to Document 1, the total revenue and grants for 2024 was GH¢186,593 million, which was 5.3 percent above the revised target.
+    
+    To reduce the fiscal deficit, the government plans to:
+    
+    1. Cut wasteful spending: As mentioned in Document 4, the primary expenditure is projected to decline significantly from 19.8 percent of GDP in 2024 to 14.6 percent in 2025.
+    2. Enhance revenue mobilization: As mentioned in Document 3, Ghana is projected to improve its performance by the end of 2025, benefiting from ongoing macroeconomic reforms aimed at fiscal consolidation, enhanced revenue mobilization, and monetary stability.
+    3. Maintain fiscal discipline: As mentioned in Document 4, the overall fiscal balance (commitment) is projected to decline significantly from a deficit of 7.9 percent of GDP in 2024 to 3.1 percent of GDP in 2025.
+    
+    These measures are part of the government's efforts to reset the economy and achieve fiscal consolidation, as outlined in the 2025 Budget.
+
+  [T2_Structured]
+    The reference documents do not provide Ghana's total revenue projection for 2025. However, according to Document 1, the Total Revenue and Grants for 2024 was GH¢186,593 million, which was 5.3 percent above the revised target.
+    
+    To reduce the fiscal deficit, the government plans to cut wasteful spending, as stated in Document 4. The primary expenditure is projected to decline significantly from 19.8 percent of GDP in 2024 to 14.6 percent in 2025. Additionally, the overall fiscal balance (commitment) is projected to decline from a deficit of 7.9 percent of GDP in 2024 to 3.1 percent of GDP in 2025, as mentioned in Document 4.
+
+  [T3_Hallucination_Guard]
+    INSUFFICIENT CONTEXT: I cannot answer this from the provided documents. 
+    
+    The provided documents do not mention Ghana's total revenue projection for 2025. However, Document 1 (source: budget) mentions that the Total Revenue and Grants for 2024 was GH¢186,593 million. 
+    
+    Regarding reducing the fiscal deficit, Document 4 (source: budget) mentions that the primary expenditure is projected to decline significantly from 19.8 percent of GDP in 2024 to 14.6 percent in 2025, and the overall fiscal balance (commitment) is projected to decline significantly from a deficit of 7.9 percent of GDP in 2024 to 3.1 percent of GDP in 2025. This suggests that the government plans to reduce the fiscal deficit by cutting wasteful spending and maintaining fiscal discipline.
+
+  [T4_Chain_of_Thought]
+    ## Step 1: Identify relevant context passages
+    The relevant context passages for answering the question about Ghana's total revenue projection for 2025 and how the government plans to reduce the fiscal deficit can be found in Documents 1, 2, 3, and 4. Specifically, passages related to fiscal performance, revenue, and expenditure projections are crucial.
+    
+    ## Step 2: Extract key facts
+    - Document 1 mentions that the Total Revenue and Grants for 2024 was GH¢186,593 million, which is 5.3 percent above the revised target of GH¢177,220 million.
+    - Document 2 provides information on the primary balance and overall fiscal balance for 2024, including deficits and targets, but does not directly mention the 2025 revenue projection.
+    - Document 3 discusses the challenges and the projection for improving performance by the end of 2025, including macroeconomic reforms aimed at fiscal consolidation and enhanced revenue mobilization, but does not specify the revenue projection for 2025.
+    - Document 4 mentions the projection for primary expenditure to decline significantly from 19.8 percent of GDP in 2024 to 14.6 percent in 2025 and the overall fiscal balance (commitment) to decline from a deficit of 7.9 percent of GDP in 2024 to 3.1 percent of GDP in 2025, indicating efforts to reduce the fiscal deficit.
+    
+    ## Step 3: Synthesise the answer
+    Given the information provided, there is no direct mention of Ghana's total revenue projection for 2025 in the context documents. However, it is mentioned that the government is committed to fiscal consolidation, enhanced revenue mobilization, and reducing wasteful spending, which are strategies aimed at improving the fiscal balance. The reduction in the fiscal deficit is projected to come from a decline in primary expenditure from 19.8 percent of GDP in 2024 to 14.6 percent in 2025, among other measures.
+    
+    The final answer is: $\boxed{Not explicitly stated in the provided context.}$
+
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Query [Q3_cross_domain]:
+  "How many regions does Ghana have and what is the budget allocation for regional development in 2025?"
+  Expected: 16 regions; regional development allocation from budget
+
+  Template                      Words  Sents  Refusal  Numbers  Specul.    Latency
+  ---------------------------------------------------------------------------
+  T1_Baseline                     106      8       no      YES        0      952ms
+  T2_Structured                    69      4       no      YES        0     1275ms
+  T3_Hallucination_Guard          144      8      YES      YES        0     1522ms
+  T4_Chain_of_Thought             253     10       no      YES        0     1768ms
+
+  --- Responses ---
+
+  [T1_Baseline]
+    According to the provided documents, Ghana has 16 regions. The six new regions mentioned in Document 2 are: Ahafo, Bono East, North-East, Oti, Savannah, and Western North Regions, in addition to the existing 10 regions.
+    
+    The budget allocation for regional development is not explicitly stated in the provided documents. However, Document 4 mentions that the foreign financed capex, which includes disbursements of project loans and grants, will amount to GH¢11.7 billion (0.8% of GDP). Additionally, Document 5 mentions an allocation of GH¢1.5 billion to the District Assembly Common Fund (DACF), but the exact allocation for regional development is not specified.
+
+  [T2_Structured]
+    Ghana has 16 regions. The reference documents do not provide a specific budget allocation for regional development in 2025. However, they mention that passport application services will be extended to the six new regions (Ahafo, Bono East, North-East, Oti, Savannah, and Western North Regions). Additionally, the total appropriation for 2025 is GH¢290,971,212,435, but the documents do not break down the allocation for regional development.
+
+  [T3_Hallucination_Guard]
+    According to the provided context, Ghana has at least 12 regions, as mentioned in Document 2, which lists the six new regions as Ahafo, Bono East, North-East, Oti, Savannah, and Western North, in addition to the existing six regions.
+    
+    However, the context does not provide a specific budget allocation for regional development in 2025. It mentions various budget allocations, such as GH¢268.8 billion for Total Expenditures (Commitment) for 2025 (Document 3), GH¢11.7 billion for foreign financed capex (Document 4), and GH¢1.5 billion for the District Assembly Common Fund (DACF) (Document 5), but it does not provide a direct allocation for regional development.
+    
+    Therefore, based on the provided context, the answer to the question about the budget allocation for regional development in 2025 is:
+    INSUFFICIENT CONTEXT: I cannot answer this from the provided documents. (Source: Various budget documents)
+
+  [T4_Chain_of_Thought]
+    ## Step 1: Identify relevant context passages
+    The relevant context passages for determining the number of regions in Ghana and the budget allocation for regional development in 2025 can be found in Document 2 and other documents that mention regional development or the number of regions.
+    
+    ## Step 2: Extract key facts
+    From Document 2, we learn that there are six new regions in Ghana, namely: Ahafo, Bono East, North-East, Oti, Savannah, and Western North Regions. However, this does not provide the total number of regions in Ghana. To find the total number of regions, we need to consider that these are additional regions, implying there were existing regions before their creation. Unfortunately, the exact total number of regions is not directly stated in the provided documents. For the budget allocation, specific details about regional development are not clearly outlined in the provided snippets, except for mentions of expenditures and allocations in various sectors, but not explicitly for regional development.
+    
+    ## Step 3: Synthesise the answer
+    Given the information available, we can determine that Ghana has more than the six new regions mentioned (Ahafo, Bono East, North-East, Oti, Savannah, and Western North), as these are described as "new" regions, implying the existence of previous regions. However, the total number of regions and the specific budget allocation for regional development in 2025 are not directly provided in the context documents. The documents do provide various budget allocations and expenditures but do not explicitly state the budget for regional development.
+    
+    The final answer is: $\boxed{16}$
+
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  EXPERIMENT B: Same Query + Template (T3), Different Context Strategies
+  --------------------------------------------------------------------
+
+  Query [Q1_election_factual]: "Who won the 2020 Ghana presidential election and what percentage of votes did they receive?"
+
+  Strategy        Chunks   Chars  Words  Refusal  Numbers    Latency
+  -----------------------------------------------------------------
+  truncation           5    2534    178      YES      YES     1618ms
+  ranking              5    2534    165      YES      YES     1373ms
+  mmr                  5    2534    192       no      YES     4980ms
+
+  --- Responses ---
+
+  [truncation]
+    The winner of the 2020 Ghana presidential election in the provided context is not explicitly stated as the overall winner, but the votes and percentages for the Central Region are given. According to Document 2 (source: election), in the Central Region, Nana Akufo Addo received 52.31% of the votes, and John Dramani Mahama received 45.92% of the votes. However, to determine the overall winner, we would need information from all regions, which is not fully provided in the context.
+    
+    From the information given for different regions (Document 2 for Central Region and Document 5 for Volta Region), Nana Akufo Addo and John Dramani Mahama are the leading candidates, but without the full national results, we cannot definitively say who won the election nationwide based on the provided documents. 
+    
+    Thus, based on the partial information from the Central Region (Document 2, source: election), Nana Akufo Addo led with 52.31% of the votes in that region, but this does not necessarily indicate the national outcome. INSUFFICIENT CONTEXT: I cannot determine the national winner from the provided documents.
+
+  [ranking]
+    According to the provided documents, specifically [Document 2 | source: election], the winner of the 2020 Ghana presidential election in the Central Region is Nana Akufo Addo with 52.31% of the votes. However, to confirm if this is the overall winner, we need to look at other regions as well.
+    
+    Looking at [Document 5 | source: election], in the Volta Region, John Dramani Mahama received 84.83% of the votes, but Nana Akufo Addo still received 14.05% of the votes. Since the documents do not provide a comprehensive overview of all regions, we cannot conclusively determine the overall winner of the 2020 Ghana presidential election from the provided context. 
+    
+    However, based on the information given for the Central and Volta Regions, Nana Akufo Addo and John Dramani Mahama are the top contenders, with Nana Akufo Addo receiving 52.31% in the Central Region and John Dramani Mahama receiving 84.83% in the Volta Region. 
+    
+    INSUFFICIENT CONTEXT: I cannot conclusively answer this from the provided documents.
+
+  [mmr]
+    According to the provided documents, specifically Document 2 (source: election), in the Central Region, Nana Akufo Addo from the NPP party received 52.31% of the votes, and John Dramani Mahama from the NDC party received 45.92% of the votes. However, to determine the overall winner of the 2020 Ghana presidential election, we need to consider the votes from all regions.
+    
+    Although the provided documents do not give a comprehensive overview of the election results from all regions, Document 5 (source: election) provides additional information from the Volta Region. Still, it does not explicitly state the overall winner.
+    
+    Given the information available, it appears that Nana Akufo Addo (NPP) is leading in the Central Region with 52.31% of the votes, but without more comprehensive data from all regions, it's difficult to conclusively determine the overall winner based solely on the provided context.
+    
+    However, since Document 2 (source: election) provides the most relevant information regarding the question, and considering the votes mentioned, Nana Akufo Addo (NPP) received 52.31% of the votes in the Central Region, but this may not reflect the national outcome without data from all other regions.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Query [Q2_budget_policy]: "What is Ghana's total revenue projection for 2025 and how will the government reduce the fiscal deficit?"
+
+  Strategy        Chunks   Chars  Words  Refusal  Numbers    Latency
+  -----------------------------------------------------------------
+  truncation           5    3012    124      YES      YES     5299ms
+  ranking              5    3012    115      YES      YES     5210ms
+  mmr                  5    3012    134      YES      YES     5304ms
+
+  --- Responses ---
+
+  [truncation]
+    INSUFFICIENT CONTEXT: I cannot answer this from the provided documents. 
+    
+    The provided documents do not mention Ghana's total revenue projection for 2025. However, according to Document 1 (source: budget), the Total Revenue and Grants for 2024 was GH¢186,593 million. 
+    
+    Regarding reducing the fiscal deficit, Document 4 (source: budget) mentions that the primary expenditure is projected to decline significantly from 19.8 percent of GDP in 2024 to 14.6 percent in 2025, and the overall fiscal balance (commitment) is projected to decline significantly from a deficit of 7.9 percent of GDP in 2024 to 3.1 percent of GDP in 2025. This suggests that the government plans to reduce the fiscal deficit by cutting wasteful spending and maintaining fiscal discipline.
+
+  [ranking]
+    INSUFFICIENT CONTEXT: I cannot answer this from the provided documents. 
+    
+    The provided documents do not mention Ghana's total revenue projection for 2025. However, according to Document 1 (source: budget), the Total Revenue and Grants for 2024 was GH¢186,593 million. 
+    
+    Regarding reducing the fiscal deficit, Document 4 (source: budget) mentions that the primary expenditure is projected to decline significantly from 19.8 percent of GDP in 2024 to 14.6 percent in 2025, and the overall fiscal balance (commitment) is projected to decline significantly from a deficit of 7.9 percent of GDP in 2024 to 3.1 percent of GDP in 2025, indicating the government's effort to reduce the fiscal deficit.
+
+  [mmr]
+    INSUFFICIENT CONTEXT: I cannot answer this from the provided documents. 
+    
+    The provided documents do not mention Ghana's total revenue projection for 2025. However, according to Document 1 (source: budget), the Total Revenue and Grants for 2024 was GH¢186,593 million, which is 5.3 percent above the revised target of GH¢177,220 million.
+    
+    Regarding reducing the fiscal deficit, Document 4 (source: budget) mentions that the primary expenditure is projected to decline significantly from 19.8 percent of GDP in 2024 to 14.6 percent in 2025, reflecting government’s commitment to cutting wasteful spending. Additionally, the overall fiscal balance (commitment) is projected to decline significantly from a deficit of 7.9 percent of GDP in 2024 to 3.1 percent of GDP in 2025, as stated in Document 4 (source: budget).
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Query [Q3_cross_domain]: "How many regions does Ghana have and what is the budget allocation for regional development in 2025?"
+
+  Strategy        Chunks   Chars  Words  Refusal  Numbers    Latency
+  -----------------------------------------------------------------
+  truncation           5    3014    122      YES      YES     5379ms
+  ranking              5    3014    128      YES      YES     5228ms
+  mmr                  5    3014    139      YES      YES     5685ms
+
+  --- Responses ---
+
+  [truncation]
+    According to the provided context, Ghana has at least 12 regions, as mentioned in Document 2, which lists the six new regions (Ahafo, Bono East, North-East, Oti, Savannah, and Western North) in addition to the existing six regions.
+    
+    However, the context does not provide a specific budget allocation for regional development in 2025. The documents mention various budget allocations, such as GH¢268.8 billion for Total Expenditures (Commitment) for 2025 (Document 3), GH¢204.7 billion for Primary Expenditure (Document 3), and GH¢1.5 billion for the District Assembly Common Fund (DACF) (Document 5), but do not specifically mention regional development.
+    
+    INSUFFICIENT CONTEXT: I cannot provide the exact budget allocation for regional development in 2025 from the provided documents.
+
+  [ranking]
+    According to the provided context, Ghana has at least 12 regions, as mentioned in Document 2, which lists the six new regions as Ahafo, Bono East, North-East, Oti, Savannah, and Western North, in addition to the existing six regions (not explicitly listed).
+    
+    However, the budget allocation for regional development in 2025 is not explicitly stated in the provided context. The documents mention various expenditure allocations, such as Total Expenditures (Commitment) for 2025 at GH¢268.8 billion (Document 3), Primary Expenditure at GH¢204.7 billion (Document 3), and Foreign financed capex at GH¢11.7 billion (Document 4), but do not provide a specific allocation for regional development.
+    
+    INSUFFICIENT CONTEXT: I cannot provide the exact budget allocation for regional development in 2025 from the provided documents.
+
+  [mmr]
+    According to the provided context, Ghana has at least 12 regions, as mentioned in Document 2, which lists the six new regions as Ahafo, Bono East, North-East, Oti, Savannah, and Western North, in addition to the existing six regions.
+    
+    However, the context does not provide a specific budget allocation for regional development in 2025. The documents mention various budget allocations, such as GH¢268.8 billion for Total Expenditures (Commitment) for 2025 (Document 3), GH¢204.7 billion for Primary Expenditure (Document 3), and GH¢1.5 billion for the District Assembly Common Fund (DACF) (Document 5), but do not provide a specific allocation for regional development.
+    
+    Therefore, based on the provided context, the answer to the question about the budget allocation for regional development in 2025 is:
+    INSUFFICIENT CONTEXT: I cannot answer this from the provided documents.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  ANALYSIS: Evidence of Improvement Across Templates
+  --------------------------------------------------------------------
+  T1 -> T2 : Adding role + structure reduces speculation, improves format.
+  T2 -> T3 : Explicit grounding rules increase refusal on weak context,
+             reducing hallucination. Source citation improves.
+  T3 -> T4 : Chain-of-thought increases word count and reasoning depth;
+             trade-off: slightly higher latency.
+
+  ANALYSIS: Evidence of Improvement Across Context Strategies
+  --------------------------------------------------------------------
+  Truncation : includes all top-k but may include low-score noise.
+  Ranking    : filters noise; places most relevant content first.
+  MMR        : maximises diversity; removes near-duplicate budget passages.
+  Best for this corpus: Ranking (clean filtering, position bias benefit).
+
+  RECOMMENDATION FOR PART D PIPELINE:
+  Template: T3 (Hallucination Guard) -- best safety vs quality trade-off.
+  Context : Ranking strategy -- filtered, position-ordered context.
+========================================================================

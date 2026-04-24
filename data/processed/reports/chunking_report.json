@@ -1,0 +1,132 @@
+{
+  "election": {
+    "fixed_size": {
+      "size": {
+        "count": 219,
+        "char_mean": 510.06849315068496,
+        "char_std": 24.24416818202381,
+        "char_min": 153,
+        "char_max": 512,
+        "word_mean": 73.45205479452055,
+        "word_std": 3.9667462779564104
+      },
+      "vocab": {
+        "total_tokens": 13734,
+        "unique_tokens": 185,
+        "type_token_ratio": 0.0135,
+        "avg_unique_per_chunk": 23.58
+      },
+      "retrieval": {
+        "hit_rate": 0.0,
+        "avg_top1_sim": 0.0255
+      }
+    },
+    "sentence_based": {
+      "size": {
+        "count": 1250,
+        "char_mean": 98.3304,
+        "char_std": 16.997540084822514,
+        "char_min": 46,
+        "char_max": 136,
+        "word_mean": 14.064,
+        "word_std": 2.5770558731969437
+      },
+      "vocab": {
+        "total_tokens": 14987,
+        "unique_tokens": 89,
+        "type_token_ratio": 0.0059,
+        "avg_unique_per_chunk": 9.39
+      },
+      "retrieval": {
+        "hit_rate": 0.0,
+        "avg_top1_sim": 0.0461
+      }
+    },
+    "paragraph_based": {
+      "size": {
+        "count": 615,
+        "char_mean": 157.05528455284554,
+        "char_std": 7.167848082392152,
+        "char_min": 140,
+        "char_max": 178,
+        "word_mean": 22.665040650406503,
+        "word_std": 1.1421723216535093
+      },
+      "vocab": {
+        "total_tokens": 11954,
+        "unique_tokens": 89,
+        "type_token_ratio": 0.0074,
+        "avg_unique_per_chunk": 14.04
+      },
+      "retrieval": {
+        "hit_rate": 0.0,
+        "avg_top1_sim": 0.0276
+      }
+    }
+  },
+  "budget": {
+    "fixed_size": {
+      "size": {
+        "count": 1628,
+        "char_mean": 511.3022113022113,
+        "char_std": 2.8862167459632295,
+        "char_min": 409,
+        "char_max": 512,
+        "word_mean": 66.79361179361179,
+        "word_std": 12.77762751621917
+      },
+      "vocab": {
+        "total_tokens": 73472,
+        "unique_tokens": 6497,
+        "type_token_ratio": 0.0884,
+        "avg_unique_per_chunk": 33.23
+      },
+      "retrieval": {
+        "hit_rate": 0.5,
+        "avg_top1_sim": 0.1079
+      }
+    },
+    "sentence_based": {
+      "size": {
+        "count": 715,
+        "char_mean": 1257.1762237762239,
+        "char_std": 2793.7677163528288,
+        "char_min": 47,
+        "char_max": 31437,
+        "word_mean": 162.6853146853147,
+        "word_std": 304.4434058886504
+      },
+      "vocab": {
+        "total_tokens": 78653,
+        "unique_tokens": 5799,
+        "type_token_ratio": 0.0737,
+        "avg_unique_per_chunk": 64.4
+      },
+      "retrieval": {
+        "hit_rate": 0.7,
+        "avg_top1_sim": 0.0637
+      }
+    },
+    "paragraph_based": {
+      "size": {
+        "count": 2614,
+        "char_mean": 263.96059678653404,
+        "char_std": 454.6108654807883,
+        "char_min": 42,
+        "char_max": 5728,
+        "word_mean": 36.034047436878346,
+        "word_std": 63.777076507629104
+      },
+      "vocab": {
+        "total_tokens": 63947,
+        "unique_tokens": 5799,
+        "type_token_ratio": 0.0907,
+        "avg_unique_per_chunk": 16.7
+      },
+      "retrieval": {
+        "hit_rate": 0.4,
+        "avg_top1_sim": 0.1657
+      }
+    }
+  }
+}

@@ -1,0 +1,542 @@
+{
+  "F1_lexical_mismatch": {
+    "query": "fiscal shortfall reduction plan Ghana",
+    "fixed_query": "fiscal shortfall reduction plan ghana",
+    "category": "F1 - Lexical Mismatch (Synonym)",
+    "why_fails": "BM25 fails because 'fiscal shortfall' is a paraphrase of 'budget deficit'. The term 'shortfall' appears rarely in the corpus so its IDF is near-zero, producing almost-zero BM25 scores. Vector search should partially recover via semantic similarity.",
+    "expected_source": "budget",
+    "bm25_only": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "budget",
+          "vector_score": null,
+          "bm25_score": 8.792265,
+          "hybrid_score": null,
+          "text_snippet": "essential medicines;  iii. vaccines payments;  iv. bridging of the USAID financing shortfall;  v.  the Free Primary Healthcare; and  vi. the Ghana Medical Care ",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "budget",
+          "vector_score": null,
+          "bm25_score": 8.558132,
+          "hybrid_score": null,
+          "text_snippet": "Table 17: Energy Sector Shortfall Payments in 2024  No  Item  Amount (US$’million)  1 IPPs Legacy Debt/ Arrears Payment  1.1  Amandi Energy   72.97  1.2  Cenpow",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "budget",
+          "vector_score": null,
+          "bm25_score": 8.427215,
+          "hybrid_score": null,
+          "text_snippet": "97. Mr. Speaker, in addition to the energy sector shortfall which relates to current invoices,  there are large unpaid legacy arrears due the Independent Power ",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    "vector_only": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "budget",
+          "vector_score": 0.706845,
+          "bm25_score": null,
+          "hybrid_score": null,
+          "text_snippet": "Secondly, it will lessen  government's reliance on borrowing, which in turn will reduce the crowding  out of the private sector and lower interest rates. Lastly",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "budget",
+          "vector_score": 0.677713,
+          "bm25_score": null,
+          "hybrid_score": null,
+          "text_snippet": "More specifically, the fiscal policy objectives of  government include:  i.  rationalising government expenditure and eliminating wasteful  expenditure;  ii. op",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "budget",
+          "vector_score": 0.67442,
+          "bm25_score": null,
+          "hybrid_score": null,
+          "text_snippet": "restoring confidence in Ghana’s economy. Fiscal Policy Strategy  237. Mr. Speaker, our foremost objective is to foster economic growth, accelerate job  creation",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    "hybrid": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "budget",
+          "vector_score": 0.677713,
+          "bm25_score": 5.390488,
+          "hybrid_score": 0.856179,
+          "text_snippet": "More specifically, the fiscal policy objectives of  government include:  i.  rationalising government expenditure and eliminating wasteful  expenditure;  ii. op",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "budget",
+          "vector_score": 0.636433,
+          "bm25_score": 5.950499,
+          "hybrid_score": 0.835968,
+          "text_snippet": "249. Mr. Speaker, to ensure effective fiscal monitoring, the government will continue to  assess fiscal effort through the Primary Balance (commitment) which se",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "budget",
+          "vector_score": 0.67442,
+          "bm25_score": 4.658954,
+          "hybrid_score": 0.828082,
+          "text_snippet": "restoring confidence in Ghana’s economy. Fiscal Policy Strategy  237. Mr. Speaker, our foremost objective is to foster economic growth, accelerate job  creation",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    "hybrid_fixed": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "budget",
+          "vector_score": 0.677713,
+          "bm25_score": 5.390488,
+          "hybrid_score": 0.856179,
+          "text_snippet": "More specifically, the fiscal policy objectives of  government include:  i.  rationalising government expenditure and eliminating wasteful  expenditure;  ii. op",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "budget",
+          "vector_score": 0.636433,
+          "bm25_score": 5.950499,
+          "hybrid_score": 0.835968,
+          "text_snippet": "249. Mr. Speaker, to ensure effective fiscal monitoring, the government will continue to  assess fiscal effort through the Primary Balance (commitment) which se",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "budget",
+          "vector_score": 0.67442,
+          "bm25_score": 4.658954,
+          "hybrid_score": 0.828082,
+          "text_snippet": "restoring confidence in Ghana’s economy. Fiscal Policy Strategy  237. Mr. Speaker, our foremost objective is to foster economic growth, accelerate job  creation",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    }
+  },
+  "F2_ambiguous_short": {
+    "query": "region",
+    "fixed_query": "region",
+    "category": "F2 - Ambiguous Single-Word Query",
+    "why_fails": "The word 'region' appears in BOTH datasets (election: regional vote tallies; budget: regional allocations). A one-word embedding is extremely diffuse, pointing equally to both domains.",
+    "expected_source": "election",
+    "bm25_only": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "election",
+          "vector_score": null,
+          "bm25_score": 3.065864,
+          "hybrid_score": null,
+          "text_snippet": "08. Old Region: Eastern Region. New Region: Eastern Region. Code: NDC. Candidate: J. A Mills. Party: NDC. Votes: 353522. Votes(%): 41.10%.  Year: 2008. Old Regi",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "election",
+          "vector_score": null,
+          "bm25_score": 3.065864,
+          "hybrid_score": null,
+          "text_snippet": "d Region: Central Region. New Region: Central Region. Code: NPP. Candidate: Nana Addo. Party: NPP. Votes: 313665. Votes(%): 45.97%.  Year: 2008. Old Region: Cen",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "election",
+          "vector_score": null,
+          "bm25_score": 3.063824,
+          "hybrid_score": null,
+          "text_snippet": "Region: Central Region. New Region: Central Region. Code: Others. Candidate: Edward Mahama. Party: PNC. Votes: 2693. Votes(%): 0.39%.  Year: 2008. Old Region: C",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    "vector_only": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "election",
+          "vector_score": 0.502725,
+          "bm25_score": null,
+          "hybrid_score": null,
+          "text_snippet": "ld Region: Central Region. New Region: Central Region. Code: Others. Candidate: Bridget Dzogbenuku. Party: PPP. Votes: 13873. Votes(%): 1.47%.  Year: 2012. Old ",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "election",
+          "vector_score": 0.501193,
+          "bm25_score": null,
+          "hybrid_score": null,
+          "text_snippet": "ld Region: Upper East Region. New Region: Upper East Region. Code: NPP. Candidate: J. A. Kuffour. Party: NPP. Votes: 106003. Votes(%): 31.66%.  Year: 2004. Old ",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "election",
+          "vector_score": 0.483078,
+          "bm25_score": null,
+          "hybrid_score": null,
+          "text_snippet": "Year: 2008. Old Region: Western Region. New Region: Western Region. Code: NPP. Candidate: Nana Addo. Party: NPP. Votes: 394521. Votes(%): 46.85%.  Year: 2008. O",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    "hybrid": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "election",
+          "vector_score": 0.502725,
+          "bm25_score": 3.050835,
+          "hybrid_score": 0.998529,
+          "text_snippet": "ld Region: Central Region. New Region: Central Region. Code: Others. Candidate: Bridget Dzogbenuku. Party: PPP. Votes: 13873. Votes(%): 1.47%.  Year: 2012. Old ",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "election",
+          "vector_score": 0.501193,
+          "bm25_score": 3.046528,
+          "hybrid_score": 0.996105,
+          "text_snippet": "ld Region: Upper East Region. New Region: Upper East Region. Code: NPP. Candidate: J. A. Kuffour. Party: NPP. Votes: 106003. Votes(%): 31.66%.  Year: 2004. Old ",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "election",
+          "vector_score": 0.483078,
+          "bm25_score": 3.052993,
+          "hybrid_score": 0.973053,
+          "text_snippet": "Year: 2008. Old Region: Western Region. New Region: Western Region. Code: NPP. Candidate: Nana Addo. Party: NPP. Votes: 394521. Votes(%): 46.85%.  Year: 2008. O",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    "hybrid_fixed": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "election",
+          "vector_score": 0.502725,
+          "bm25_score": 3.050835,
+          "hybrid_score": 0.998529,
+          "text_snippet": "ld Region: Central Region. New Region: Central Region. Code: Others. Candidate: Bridget Dzogbenuku. Party: PPP. Votes: 13873. Votes(%): 1.47%.  Year: 2012. Old ",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "election",
+          "vector_score": 0.501193,
+          "bm25_score": 3.046528,
+          "hybrid_score": 0.996105,
+          "text_snippet": "ld Region: Upper East Region. New Region: Upper East Region. Code: NPP. Candidate: J. A. Kuffour. Party: NPP. Votes: 106003. Votes(%): 31.66%.  Year: 2004. Old ",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "election",
+          "vector_score": 0.483078,
+          "bm25_score": 3.052993,
+          "hybrid_score": 0.973053,
+          "text_snippet": "Year: 2008. Old Region: Western Region. New Region: Western Region. Code: NPP. Candidate: Nana Addo. Party: NPP. Votes: 394521. Votes(%): 46.85%.  Year: 2008. O",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    }
+  },
+  "F3_cross_domain": {
+    "query": "total allocation by region 2025",
+    "fixed_query": "total allocation region",
+    "category": "F3 - Cross-Domain Vocabulary Contamination",
+    "why_fails": "'total' and 'region' are high-frequency in the election CSV (regional vote totals), so BM25 may rank election chunks above budget allocation paragraphs even though the query is budget-focused.",
+    "expected_source": "budget",
+    "bm25_only": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "budget",
+          "vector_score": null,
+          "bm25_score": 7.812139,
+          "hybrid_score": null,
+          "text_snippet": "206. Mr. Speaker, the GH¢7.6 billion utilised represents 99.8 percent of the total actual  funds available to be utilised on the priority areas of GH¢7.6 billio",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "budget",
+          "vector_score": null,
+          "bm25_score": 7.708745,
+          "hybrid_score": null,
+          "text_snippet": "The allocation for LEAP benefits has also been increased by 30.8% from  GH¢728.8 million to GH¢953.5 million in 2025. 387. Mr. Speaker, we have also uncapped th",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "budget",
+          "vector_score": null,
+          "bm25_score": 7.395259,
+          "hybrid_score": null,
+          "text_snippet": "The Net ABFA after these transfers  came to US$301.03 million. Table 31: Distribution of Petroleum Receipts in 2024    Source: MoF & BoG    ABFA Allocation and ",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    "vector_only": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "budget",
+          "vector_score": 0.548614,
+          "bm25_score": null,
+          "hybrid_score": null,
+          "text_snippet": "Mr. Speaker, based on the resource allocations for the 2025 fiscal year, the total  appropriation for the year ending 31st December 2025 is GH¢290,971,212,435. ",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "budget",
+          "vector_score": 0.52524,
+          "bm25_score": null,
+          "hybrid_score": null,
+          "text_snippet": "The allocation for 2025 reflects an increase in the feeding cost per meal per  child per day from GH¢1.50 to GH¢2.00, representing 33.3%. 382. Mr. Speaker, the ",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "budget",
+          "vector_score": 0.485497,
+          "bm25_score": null,
+          "hybrid_score": null,
+          "text_snippet": "Items  2024*  2025**  Brent Crude (US$/bbl)    64.03    42.30    70.44    99.80    84.00   80.70     73.00  Gold (US$/oz)    1,393    1,770    1,800    1,801   ",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    "hybrid": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "budget",
+          "vector_score": 0.548614,
+          "bm25_score": 6.220503,
+          "hybrid_score": 0.938878,
+          "text_snippet": "Mr. Speaker, based on the resource allocations for the 2025 fiscal year, the total  appropriation for the year ending 31st December 2025 is GH¢290,971,212,435. ",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "budget",
+          "vector_score": 0.52524,
+          "bm25_score": 5.720178,
+          "hybrid_score": 0.890712,
+          "text_snippet": "The allocation for 2025 reflects an increase in the feeding cost per meal per  child per day from GH¢1.50 to GH¢2.00, representing 33.3%. 382. Mr. Speaker, the ",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "budget",
+          "vector_score": 0.444534,
+          "bm25_score": 7.812139,
+          "hybrid_score": 0.871077,
+          "text_snippet": "206. Mr. Speaker, the GH¢7.6 billion utilised represents 99.8 percent of the total actual  funds available to be utilised on the priority areas of GH¢7.6 billio",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    "hybrid_fixed": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "budget",
+          "vector_score": 0.428228,
+          "bm25_score": 6.220503,
+          "hybrid_score": 0.952344,
+          "text_snippet": "Mr. Speaker, based on the resource allocations for the 2025 fiscal year, the total  appropriation for the year ending 31st December 2025 is GH¢290,971,212,435. ",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "budget",
+          "vector_score": 0.411222,
+          "bm25_score": 6.188087,
+          "hybrid_score": 0.924327,
+          "text_snippet": "206. Mr. Speaker, the GH¢7.6 billion utilised represents 99.8 percent of the total actual  funds available to be utilised on the priority areas of GH¢7.6 billio",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "budget",
+          "vector_score": 0.419293,
+          "bm25_score": 5.720178,
+          "hybrid_score": 0.918019,
+          "text_snippet": "The allocation for 2025 reflects an increase in the feeding cost per meal per  child per day from GH¢1.50 to GH¢2.00, representing 33.3%. 382. Mr. Speaker, the ",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    }
+  },
+  "F4_entity_hyphen": {
+    "query": "Nana Akufo-Addo presidential votes",
+    "fixed_query": "nana akufo addo presidential votes",
+    "category": "F4 - Hyphenated Proper Noun",
+    "why_fails": "The hyphen in 'Akufo-Addo' causes BM25 to split it into 'Akufo' and 'Addo' as separate low-frequency tokens. If either sub-token is absent from the BM25 vocabulary, IDF scoring fails entirely.",
+    "expected_source": "election",
+    "bm25_only": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "election",
+          "vector_score": null,
+          "bm25_score": 13.764135,
+          "hybrid_score": null,
+          "text_snippet": "es: 363. Votes(%): 0.03%.  Year: 2020. Old Region: Central Region. New Region: Central Region. Code: Others. Candidate: Nana Konadu Agyeman Rawlings. Party: NDP",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "election",
+          "vector_score": null,
+          "bm25_score": 13.764135,
+          "hybrid_score": null,
+          "text_snippet": "Votes(%): 0.33%.  Year: 2016. Old Region: Northern Region. New Region: Northern Region. Code: Others. Candidate: Bridget Dzogbenuku. Party: PPP. Votes: 8049. Vo",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "election",
+          "vector_score": null,
+          "bm25_score": 13.762071,
+          "hybrid_score": null,
+          "text_snippet": "arty: PPP. Votes: 25737. Votes(%): 2.76%.  Year: 2016. Old Region: Central Region. New Region: Central Region. Code: Others. Candidate: Nana Konadu Agyeman Rawl",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    "vector_only": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "election",
+          "vector_score": 0.594661,
+          "bm25_score": null,
+          "hybrid_score": null,
+          "text_snippet": "Nana Akufo Addo. Party: NPP. Votes: 199720. Votes(%): 42.33%.  Year: 2020. Old Region: Brong Ahafo Region. New Region: Bono East Region. Code: NDC. Candidate: J",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "election",
+          "vector_score": 0.592615,
+          "bm25_score": null,
+          "hybrid_score": null,
+          "text_snippet": "Candidate: Nana Konadu Agyeman Rawlings. Party: NDP. Votes: 239. Votes(%): 0.05%.  Year: 2020. Old Region: Central Region. New Region: Central Region. Code: NPP",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "election",
+          "vector_score": 0.581887,
+          "bm25_score": null,
+          "hybrid_score": null,
+          "text_snippet": "es: 363. Votes(%): 0.03%.  Year: 2020. Old Region: Central Region. New Region: Central Region. Code: Others. Candidate: Nana Konadu Agyeman Rawlings. Party: NDP",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    "hybrid": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "election",
+          "vector_score": 0.592615,
+          "bm25_score": 13.640327,
+          "hybrid_score": 0.995029,
+          "text_snippet": "Candidate: Nana Konadu Agyeman Rawlings. Party: NDP. Votes: 239. Votes(%): 0.05%.  Year: 2020. Old Region: Central Region. New Region: Central Region. Code: NPP",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "election",
+          "vector_score": 0.581887,
+          "bm25_score": 13.764135,
+          "hybrid_score": 0.985809,
+          "text_snippet": "es: 363. Votes(%): 0.03%.  Year: 2020. Old Region: Central Region. New Region: Central Region. Code: Others. Candidate: Nana Konadu Agyeman Rawlings. Party: NDP",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "election",
+          "vector_score": 0.573427,
+          "bm25_score": 13.584928,
+          "hybrid_score": 0.972504,
+          "text_snippet": "ate: Nana Konadu Agyeman Rawlings. Party: NDP. Votes: 617. Votes(%): 0.09%.  Year: 2020. Old Region: Western Region. New Region: Western Region. Code: NPP. Cand",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    },
+    "hybrid_fixed": {
+      "results": [
+        {
+          "rank": 1,
+          "source": "election",
+          "vector_score": 0.584281,
+          "bm25_score": 13.640327,
+          "hybrid_score": 0.997302,
+          "text_snippet": "Candidate: Nana Konadu Agyeman Rawlings. Party: NDP. Votes: 239. Votes(%): 0.05%.  Year: 2020. Old Region: Central Region. New Region: Central Region. Code: NPP",
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "source": "election",
+          "vector_score": 0.573965,
+          "bm25_score": 13.764135,
+          "hybrid_score": 0.988379,
+          "text_snippet": "es: 363. Votes(%): 0.03%.  Year: 2020. Old Region: Central Region. New Region: Central Region. Code: Others. Candidate: Nana Konadu Agyeman Rawlings. Party: NDP",
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "source": "election",
+          "vector_score": 0.560978,
+          "bm25_score": 13.584928,
+          "hybrid_score": 0.969843,
+          "text_snippet": "ate: Nana Konadu Agyeman Rawlings. Party: NDP. Votes: 617. Votes(%): 0.09%.  Year: 2020. Old Region: Western Region. New Region: Western Region. Code: NPP. Cand",
+          "relevant": true
+        }
+      ],
+      "hit_rate": 1.0
+    }
+  }
+}

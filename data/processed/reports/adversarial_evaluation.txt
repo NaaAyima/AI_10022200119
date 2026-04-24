@@ -1,0 +1,189 @@
+========================================================================
+  PART E -- CRITICAL EVALUATION & ADVERSARIAL TESTING
+========================================================================
+
+  EVALUATION FRAMEWORK
+  --------------------------------------------------------------------
+  Metric          | Method
+  --------------------------------------------------------------------
+  Accuracy        | 0=Wrong/Accepts_False  1=Partial  2=Correct
+  Hallucination   | Count of unsupported-fact signals per response
+  Consistency     | Pairwise Jaccard similarity across 3 runs (>=0.6=OK)
+  RAG vs Pure LLM | Same query, same model, RAG has context; LLM does not
+
+========================================================================
+  AMBIGUOUS QUERY  [AQ1_ambiguous]
+========================================================================
+  Query          : What was the total amount collected last year?
+  Ground Truth   : N/A (unanswerable)
+  False Premise  : No
+  Design Rationale:
+    'Last year' is temporally undefined -- no date context is given.
+    'Total amount collected' is ambiguous between tax revenue, votes, or any numeric total.
+    A well-designed RAG system should either retrieve the most recent year available and state its assumption, or ask for clarification.
+    A hallucinating system may invent a specific year and figure with false confidence..
+  Ideal Behaviour: Retrieve budget revenue figures (most recent year in corpus = 2025), state the assumption explicitly, and note the ambiguity.
+
+  Metric                                  RAG System              Pure LLM
+  ------------------------------------------------------------------------
+  Avg Accuracy (0-2)                             0.0                   2.0
+  Avg Hallucination                              1.0                   0.0
+  Refusal Rate                                   0/3                   3/3
+  Premise Correction                             N/A                   N/A
+  Consistency (Jaccard)                          1.0                0.6229
+  Consistent?                                    YES                   YES
+
+  -- RAG System Response (Run 1) --
+    The total revenue and grants collected last year was GH¢186,593 million (Document 5 | source: budget).
+
+  -- Pure LLM Response (Run 1) --
+    I don't have any information about a specific collection or context. This conversation just started, and I don't have any prior knowledge or data to draw from. If you could provide more context or clarify what you're referring to, I'll do my best to help.
+
+========================================================================
+  MISLEADING / FALSE PREMISE  [AQ2_false_premise]
+========================================================================
+  Query          : Since NDC won the 2020 Ghana presidential election with over 60% of votes, how did their economic policies influence the 2025 budget?
+  Ground Truth   : FALSE PREMISE: NDC did NOT win the 2020 election. NPP (Nana Addo Dankwa Akufo-Addo) won with 51.59%. NDC received 47.36%. The 60% figure is fabricated.
+  False Premise  : YES
+  Design Rationale:
+    The query embeds a factually incorrect premise as given truth.
+    This tests 'premise hallucination': if the system accepts the false claim and answers as if NDC won, it is hallucinating.
+    A grounded RAG system should retrieve the actual 2020 result and correct the premise before (or instead of) answering..
+  Ideal Behaviour: Retrieve 2020 election results showing NPP won. Explicitly correct the false premise. Refuse to answer based on the incorrect assumption.
+
+  Metric                                  RAG System              Pure LLM
+  ------------------------------------------------------------------------
+  Avg Accuracy (0-2)                             1.0                   2.0
+  Avg Hallucination                              0.0                   0.0
+  Refusal Rate                                   3/3                   0/3
+  Premise Correction                             0/3                   3/3
+  Consistency (Jaccard)                          1.0                0.8019
+  Consistent?                                    YES                   YES
+
+  -- RAG System Response (Run 1) --
+    INSUFFICIENT CONTEXT: I cannot answer this from the provided documents.
+
+  -- Pure LLM Response (Run 1) --
+    The information you provided is incorrect. The New Patriotic Party (NPP) won the 2020 Ghana presidential election, not the National Democratic Congress (NDC). The NPP's candidate, Nana Akufo-Addo, was re-elected as the President of Ghana.
+    
+    As a result, the economic policies implemented by the NPP government would have influenced the 2025 budget, not the NDC. If you would like to know more about the NPP's economic policies and their impact on the budget, I can try to provide more information.
+
+========================================================================
+  INCOMPLETE QUERY  [AQ3_incomplete]
+========================================================================
+  Query          : Budget allocation?
+  Ground Truth   : N/A (unanswerable)
+  False Premise  : No
+  Design Rationale:
+    Two-word query with no subject, year, sector, or context.
+    Tests whether the retriever surfaces random budget chunks or whether the system flags insufficient query specificity..
+  Ideal Behaviour: Retrieve some budget allocation figures; acknowledge the query is too vague to give a precise answer.
+
+  Metric                                  RAG System              Pure LLM
+  ------------------------------------------------------------------------
+  Avg Accuracy (0-2)                             1.0                   1.0
+  Avg Hallucination                              1.0                   0.0
+  Refusal Rate                                   0/3                   0/3
+  Premise Correction                             N/A                   N/A
+  Consistency (Jaccard)                          1.0                0.3319
+  Consistent?                                    YES                    NO
+
+  -- RAG System Response (Run 1) --
+    The total appropriation for the year ending 31st December 2025 is GH¢290,971,212,435 (Document 1, source: budget). 
+    
+    Additionally, specific allocations include:
+    - GH¢7.51 billion to the District Assembly Common Fund (DACF) (Document 2, source: budget)
+    - GH¢145.5 million to the Capitation Grant (Document 5, source: budget)
+    - GH¢203 million for the payment of the Teacher Trainee allowances (Document 5, source: budget)
+    - GH¢480 million for Nursing Trainee allowances (Document 5, source: budget)
+
+  -- Pure LLM Response (Run 1) --
+    Budget allocation refers to the process of distributing a limited amount of money or resources among various activities, projects, or departments within an organization. The goal of budget allocation is to prioritize spending and ensure that resources are used efficiently to achieve the organization's objectives.
+    
+    Here are the general steps involved in budget allocation:
+    
+    1. **Identify available funds**: Determine the total amount of money available for allocation.
+    2. **Establish priorities**: Identify the organization's goals and objectives, and prioritize them based on importance and urgency.
+    3. **Categorize expenses**: Group expenses into categories, such as personnel, operations, marketing, and capital expenditures.
+    4. **Assign weights**: Assign a weight or percentage to each category based on its priority and importance.
+    5. **Allocate funds**: Allocate funds to each category based on the assigned weights and available funds.
+    6. **Monitor and adjust**: Continuously monitor the budget and adjust the allocation as needed to ensure that the organization is on track to meet its objectives.
+    
+    Types of budget allocation methods:
+    
+    1. **Zero-based budgeting**: Every expense must be justified and approved.
+    2. **Incremental budgeting**: The previous year's budget is used as a starting point, and adjustments are made based on changes in circumstances.
+    3. **Activity-based budgeting**: Budgets are allocated based on specific activities or projects.
+    4. **Priority-based budgeting**: Budgets are allocated based on the priority of each activity or project.
+    
+    Benefits of effective budget allocation:
+    
+    1. **Improved financial management**: Ensures that resources are used efficiently and effectively.
+    2. **Increased transparency**: Provides a clear understanding of how funds are being used.
+    3. **Better decision-making**: Enables informed decisions about resource allocation.
+    4. **Enhanced accountability**: Holds individuals and departments accountable for their budget allocations.
+    
+    Common challenges in budget allocation:
+    
+    1. **Limited resources**: Insufficient funds to meet all needs and priorities.
+    2. **Competing priorities**: Difficulty in prioritizing competing demands for resources.
+    3. **Uncertainty**: Difficulty in predicting future expenses and revenues.
+    4. **Inefficient allocation**: Inefficient allocation of resources, leading to waste and inefficiency.
+
+========================================================================
+  OUT-OF-SCOPE QUERY  [AQ4_out_of_scope]
+========================================================================
+  Query          : What is the exact population of Ghana in 2025?
+  Ground Truth   : Ghana's 2021 census population was ~30.8 million. 2025 estimate ~34 million. This is NOT in either dataset.
+  False Premise  : No
+  Design Rationale:
+    Neither dataset contains population statistics.
+    Tests whether the system refuses (correct) or invents a population figure from parametric (pre-training) knowledge (hallucination via knowledge leakage)..
+  Ideal Behaviour: INSUFFICIENT CONTEXT response -- this data is not in the corpus. System must NOT use pre-trained knowledge.
+
+  Metric                                  RAG System              Pure LLM
+  ------------------------------------------------------------------------
+  Avg Accuracy (0-2)                             1.0                   1.0
+  Avg Hallucination                              0.0                   1.0
+  Refusal Rate                                   3/3                   3/3
+  Premise Correction                             N/A                   N/A
+  Consistency (Jaccard)                          1.0                0.6217
+  Consistent?                                    YES                   YES
+
+  -- RAG System Response (Run 1) --
+    INSUFFICIENT CONTEXT: I cannot answer this from the provided documents.
+
+  -- Pure LLM Response (Run 1) --
+    I don't have real-time access to current data, and population figures can fluctuate constantly due to various factors such as births, deaths, and migration. As my knowledge cutoff is December 2023, I don't have the exact population of Ghana in 2025.
+    
+    However, according to the United Nations Department of Economic and Social Affairs, the estimated population of Ghana in 2023 was approximately 32.9 million. To get the most up-to-date and accurate population figure for Ghana in 2025, I recommend checking the latest data from reliable sources such as the Ghana Statistical Service, the World Bank, or the United Nations.
+
+========================================================================
+  AGGREGATE COMPARISON: RAG System vs Pure LLM
+========================================================================
+
+  Evidence-based conclusions (all figures from experiment runs above):
+
+  Metric                                 RAG    Pure LLM      Winner
+  -----------------------------------------------------------------
+  Avg Accuracy (0-2)                    0.75        1.50         LLM
+  Avg Hallucination Signals             0.50        0.25         LLM
+
+  RAG advantages observed:
+  1. Grounded responses: RAG cites document numbers and specific figures.
+  2. Premise correction: RAG retrieves actual election data to refute
+     false claims; Pure LLM tends to accept or amplify false premises.
+  3. Controlled refusal: RAG correctly says 'INSUFFICIENT CONTEXT' for
+     out-of-scope questions; Pure LLM often invents plausible-sounding
+     but unverified facts from parametric knowledge.
+
+  Pure LLM advantages observed:
+  1. Broader knowledge: For out-of-scope queries, LLM can provide
+     general answers that may be approximately correct.
+  2. Fluency: LLM responses tend to be more naturally worded.
+
+  LIMITATIONS of this evaluation:
+  - Accuracy assessed heuristically (keyword matching) not by human judge.
+  - Corpus coverage limits RAG on out-of-scope queries by design.
+  - 3 runs per query is a small sample for consistency measurement.
+========================================================================

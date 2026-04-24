@@ -1,0 +1,585 @@
+{
+  "AQ1_ambiguous": {
+    "query": "What was the total amount collected last year?",
+    "category": "Ambiguous Query",
+    "false_premise": false,
+    "ground_truth": null,
+    "rag": {
+      "runs": [
+        {
+          "run": 1,
+          "response": "The total revenue and grants collected last year was GH¢186,593 million (Document 5 | source: budget).",
+          "latency_ms": 2034.2,
+          "prompt_tokens": 981,
+          "completion_tokens": 25
+        },
+        {
+          "run": 2,
+          "response": "The total revenue and grants collected last year was GH¢186,593 million (Document 5, source: budget).",
+          "latency_ms": 1172.5,
+          "prompt_tokens": 981,
+          "completion_tokens": 25
+        },
+        {
+          "run": 3,
+          "response": "The total revenue and grants collected last year was GH¢186,593 million. (Source: Document 5, Budget document)",
+          "latency_ms": 983.5,
+          "prompt_tokens": 981,
+          "completion_tokens": 27
+        }
+      ],
+      "evaluations": [
+        {
+          "accuracy_score": 0,
+          "accuracy_label": "WRONG / ACCEPTS_FALSE_PREMISE",
+          "hallucination_signals": 1,
+          "numbers_not_in_context": [],
+          "did_refuse": false,
+          "did_correct_premise": null,
+          "word_count": 16
+        },
+        {
+          "accuracy_score": 0,
+          "accuracy_label": "WRONG / ACCEPTS_FALSE_PREMISE",
+          "hallucination_signals": 1,
+          "numbers_not_in_context": [],
+          "did_refuse": false,
+          "did_correct_premise": null,
+          "word_count": 15
+        },
+        {
+          "accuracy_score": 0,
+          "accuracy_label": "WRONG / ACCEPTS_FALSE_PREMISE",
+          "hallucination_signals": 1,
+          "numbers_not_in_context": [],
+          "did_refuse": false,
+          "did_correct_premise": null,
+          "word_count": 16
+        }
+      ],
+      "consistency": {
+        "avg_jaccard": 1.0,
+        "min_jaccard": 1.0,
+        "consistent": true
+      },
+      "context": "[Document 1 | source: budget | relevance: 0.807]\n389. Mr. Speaker, it is worth noting that this is in stark contrast to what has happened to \nthe District Assembly Common Fund (DACF) in recent years where less than 50 percent \nof the released amount to DACF goes to the District Assemblies, with a significant \nportion spent at the center. 390. Mr. Speaker, we have allocated an amount of GH¢1.5 billion for Agriculture for \nEconomic Transformation Agenda (AETA) of which Feed Ghana Programme, Ghana ...",
+      "summary": {
+        "avg_accuracy": 0.0,
+        "avg_hallucination": 1.0,
+        "refusal_rate": "0/3",
+        "premise_correction": "N/A"
+      }
+    },
+    "pure_llm": {
+      "runs": [
+        {
+          "run": 1,
+          "response": "I don't have any information about a specific collection or context. This conversation just started, and I don't have any prior knowledge or data to draw from. If you could provide more context or clarify what you're referring to, I'll do my best to help.",
+          "latency_ms": 1542.2,
+          "prompt_tokens": 60,
+          "completion_tokens": 55
+        },
+        {
+          "run": 2,
+          "response": "I don't have any information about a specific collection or context. This conversation just started, and I don't have any prior knowledge or data to draw from. If you could provide more context or clarify what you're referring to, I'd be happy to try and help.",
+          "latency_ms": 899.0,
+          "prompt_tokens": 60,
+          "completion_tokens": 56
+        },
+        {
+          "run": 3,
+          "response": "I don't have any information about a specific collection or the context of your question. Could you please provide more details or clarify what you are referring to? I'll do my best to help.",
+          "latency_ms": 718.3,
+          "prompt_tokens": 60,
+          "completion_tokens": 40
+        }
+      ],
+      "evaluations": [
+        {
+          "accuracy_score": 2,
+          "accuracy_label": "CORRECT",
+          "hallucination_signals": 0,
+          "numbers_not_in_context": [],
+          "did_refuse": true,
+          "did_correct_premise": null,
+          "word_count": 45
+        },
+        {
+          "accuracy_score": 2,
+          "accuracy_label": "CORRECT",
+          "hallucination_signals": 0,
+          "numbers_not_in_context": [],
+          "did_refuse": true,
+          "did_correct_premise": null,
+          "word_count": 46
+        },
+        {
+          "accuracy_score": 2,
+          "accuracy_label": "CORRECT",
+          "hallucination_signals": 0,
+          "numbers_not_in_context": [],
+          "did_refuse": true,
+          "did_correct_premise": null,
+          "word_count": 34
+        }
+      ],
+      "consistency": {
+        "avg_jaccard": 0.6229,
+        "min_jaccard": 0.4571,
+        "consistent": true
+      },
+      "context": "NONE",
+      "summary": {
+        "avg_accuracy": 2.0,
+        "avg_hallucination": 0.0,
+        "refusal_rate": "3/3",
+        "premise_correction": "N/A"
+      }
+    }
+  },
+  "AQ2_false_premise": {
+    "query": "Since NDC won the 2020 Ghana presidential election with over 60% of votes, how did their economic policies influence the 2025 budget?",
+    "category": "Misleading / False Premise",
+    "false_premise": true,
+    "ground_truth": "FALSE PREMISE: NDC did NOT win the 2020 election. NPP (Nana Addo Dankwa Akufo-Addo) won with 51.59%. NDC received 47.36%. The 60% figure is fabricated.",
+    "rag": {
+      "runs": [
+        {
+          "run": 1,
+          "response": "INSUFFICIENT CONTEXT: I cannot answer this from the provided documents.",
+          "latency_ms": 542.3,
+          "prompt_tokens": 1025,
+          "completion_tokens": 15
+        },
+        {
+          "run": 2,
+          "response": "INSUFFICIENT CONTEXT: I cannot answer this from the provided documents.",
+          "latency_ms": 829.5,
+          "prompt_tokens": 1025,
+          "completion_tokens": 15
+        },
+        {
+          "run": 3,
+          "response": "INSUFFICIENT CONTEXT: I cannot answer this from the provided documents.",
+          "latency_ms": 1296.3,
+          "prompt_tokens": 1025,
+          "completion_tokens": 15
+        }
+      ],
+      "evaluations": [
+        {
+          "accuracy_score": 1,
+          "accuracy_label": "PARTIAL",
+          "hallucination_signals": 0,
+          "numbers_not_in_context": [],
+          "did_refuse": true,
+          "did_correct_premise": false,
+          "word_count": 10
+        },
+        {
+          "accuracy_score": 1,
+          "accuracy_label": "PARTIAL",
+          "hallucination_signals": 0,
+          "numbers_not_in_context": [],
+          "did_refuse": true,
+          "did_correct_premise": false,
+          "word_count": 10
+        },
+        {
+          "accuracy_score": 1,
+          "accuracy_label": "PARTIAL",
+          "hallucination_signals": 0,
+          "numbers_not_in_context": [],
+          "did_refuse": true,
+          "did_correct_premise": false,
+          "word_count": 10
+        }
+      ],
+      "consistency": {
+        "avg_jaccard": 1.0,
+        "min_jaccard": 1.0,
+        "consistent": true
+      },
+      "context": "[Document 1 | source: budget | relevance: 0.874]\nResetting the Economy for the Ghana We Want \n2025 Budget \n \nii. Heads of Services and public institutions are to undertake internal restructuring to place staff in understaffed areas and undertake \ntraining to reskill or upskill others. 479. All MDAs are to collaborate with the Public Services Commission to: \ni. \nreview their promotion policies to make it more competitive and allow it \nto be done within budgetary constraints; \nii. review their Stu...",
+      "summary": {
+        "avg_accuracy": 1.0,
+        "avg_hallucination": 0.0,
+        "refusal_rate": "3/3",
+        "premise_correction": "0/3"
+      }
+    },
+    "pure_llm": {
+      "runs": [
+        {
+          "run": 1,
+          "response": "The information you provided is incorrect. The New Patriotic Party (NPP) won the 2020 Ghana presidential election, not the National Democratic Congress (NDC). The NPP's candidate, Nana Akufo-Addo, was re-elected as the President of Ghana.\n\nAs a result, the economic policies implemented by the NPP government would have influenced the 2025 budget, not the NDC. If you would like to know more about the NPP's economic policies and their impact on the budget, I can try to provide more information.",
+          "latency_ms": 1312.8,
+          "prompt_tokens": 82,
+          "completion_tokens": 115
+        },
+        {
+          "run": 2,
+          "response": "The information you provided is incorrect. The New Patriotic Party (NPP) won the 2020 Ghana presidential election, not the National Democratic Congress (NDC). The NPP's candidate, Nana Akufo-Addo, was re-elected as the President of Ghana.\n\nAs a result, the economic policies implemented by the NPP government would have influenced the 2025 budget, not the NDC. If you would like to know more about the NPP's economic policies and their impact on the 2025 budget, I can try to provide more general information on the topic. However, please note that the 2025 budget may not be publicly available yet, and my knowledge cutoff is December 2023.",
+          "latency_ms": 932.6,
+          "prompt_tokens": 82,
+          "completion_tokens": 149
+        },
+        {
+          "run": 3,
+          "response": "The information you provided is incorrect. The New Patriotic Party (NPP) won the 2020 Ghana presidential election, not the National Democratic Congress (NDC). The NPP's candidate, Nana Akufo-Addo, was re-elected as the President of Ghana.\n\nAs a result, the economic policies implemented by the NPP government would have influenced the 2025 budget, not the NDC. If you would like to know more about the NPP's economic policies and their impact on the budget, I can provide you with general information on the topic. However, please note that I may not have real-time information on the 2025 budget, as my knowledge cutoff is December 2023.",
+          "latency_ms": 1110.4,
+          "prompt_tokens": 82,
+          "completion_tokens": 147
+        }
+      ],
+      "evaluations": [
+        {
+          "accuracy_score": 2,
+          "accuracy_label": "CORRECT",
+          "hallucination_signals": 0,
+          "numbers_not_in_context": [
+            "2020",
+            "2025"
+          ],
+          "did_refuse": false,
+          "did_correct_premise": true,
+          "word_count": 80
+        },
+        {
+          "accuracy_score": 2,
+          "accuracy_label": "CORRECT",
+          "hallucination_signals": 0,
+          "numbers_not_in_context": [
+            "2020",
+            "2025",
+            "2025",
+            "2025",
+            "2023"
+          ],
+          "did_refuse": false,
+          "did_correct_premise": true,
+          "word_count": 105
+        },
+        {
+          "accuracy_score": 2,
+          "accuracy_label": "CORRECT",
+          "hallucination_signals": 0,
+          "numbers_not_in_context": [
+            "2020",
+            "2025",
+            "2025",
+            "2023"
+          ],
+          "did_refuse": false,
+          "did_correct_premise": true,
+          "word_count": 104
+        }
+      ],
+      "consistency": {
+        "avg_jaccard": 0.8019,
+        "min_jaccard": 0.75,
+        "consistent": true
+      },
+      "context": "NONE",
+      "summary": {
+        "avg_accuracy": 2.0,
+        "avg_hallucination": 0.0,
+        "refusal_rate": "0/3",
+        "premise_correction": "3/3"
+      }
+    }
+  },
+  "AQ3_incomplete": {
+    "query": "Budget allocation?",
+    "category": "Incomplete Query",
+    "false_premise": false,
+    "ground_truth": null,
+    "rag": {
+      "runs": [
+        {
+          "run": 1,
+          "response": "The total appropriation for the year ending 31st December 2025 is GH¢290,971,212,435 (Document 1, source: budget). \n\nAdditionally, specific allocations include:\n- GH¢7.51 billion to the District Assembly Common Fund (DACF) (Document 2, source: budget)\n- GH¢145.5 million to the Capitation Grant (Document 5, source: budget)\n- GH¢203 million for the payment of the Teacher Trainee allowances (Document 5, source: budget)\n- GH¢480 million for Nursing Trainee allowances (Document 5, source: budget)",
+          "latency_ms": 1121.0,
+          "prompt_tokens": 932,
+          "completion_tokens": 130
+        },
+        {
+          "run": 2,
+          "response": "The total appropriation for the year ending 31st December 2025 is GH¢290,971,212,435 (Document 1, source: budget). \n\nAdditionally, specific allocations include:\n- GH¢7.51 billion to the District Assembly Common Fund (DACF) (Document 2, source: budget)\n- GH¢145.5 million to the Capitation Grant (Document 5, source: budget)\n- GH¢203 million for the payment of the Teacher Trainee allowances (Document 5, source: budget)\n- GH¢480 million for Nursing Trainee allowances (Document 5, source: budget)",
+          "latency_ms": 1294.4,
+          "prompt_tokens": 932,
+          "completion_tokens": 130
+        },
+        {
+          "run": 3,
+          "response": "The total appropriation for the year ending 31st December 2025 is GH¢290,971,212,435 (Document 1, source: budget). \n\nAdditionally, specific allocations include:\n- GH¢7.51 billion to the District Assembly Common Fund (DACF) (Document 2, source: budget)\n- GH¢145.5 million to the Capitation Grant (Document 5, source: budget)\n- GH¢203 million for the payment of the Teacher Trainee allowances (Document 5, source: budget)\n- GH¢480 million for Nursing Trainee allowances (Document 5, source: budget)",
+          "latency_ms": 1483.9,
+          "prompt_tokens": 932,
+          "completion_tokens": 130
+        }
+      ],
+      "evaluations": [
+        {
+          "accuracy_score": 1,
+          "accuracy_label": "PARTIAL",
+          "hallucination_signals": 1,
+          "numbers_not_in_context": [],
+          "did_refuse": false,
+          "did_correct_premise": null,
+          "word_count": 71
+        },
+        {
+          "accuracy_score": 1,
+          "accuracy_label": "PARTIAL",
+          "hallucination_signals": 1,
+          "numbers_not_in_context": [],
+          "did_refuse": false,
+          "did_correct_premise": null,
+          "word_count": 71
+        },
+        {
+          "accuracy_score": 1,
+          "accuracy_label": "PARTIAL",
+          "hallucination_signals": 1,
+          "numbers_not_in_context": [],
+          "did_refuse": false,
+          "did_correct_premise": null,
+          "word_count": 71
+        }
+      ],
+      "consistency": {
+        "avg_jaccard": 1.0,
+        "min_jaccard": 1.0,
+        "consistent": true
+      },
+      "context": "[Document 1 | source: budget | relevance: 0.939]\nMr. Speaker, based on the resource allocations for the 2025 fiscal year, the total \nappropriation for the year ending 31st December 2025 is GH¢290,971,212,435. Figure 12: 2025 Resource Allocation (in GH¢ Million) \n \nSource: MoF \n \n2025 Budget Balances and Financing Operations \n304. Mr. Speaker, the projected Overall balance on commitment basis is a deficit of GH¢43.8 \nbillion, equivalent to 3.1 percent of GDP. The corresponding Primary balance on ...",
+      "summary": {
+        "avg_accuracy": 1.0,
+        "avg_hallucination": 1.0,
+        "refusal_rate": "0/3",
+        "premise_correction": "N/A"
+      }
+    },
+    "pure_llm": {
+      "runs": [
+        {
+          "run": 1,
+          "response": "Budget allocation refers to the process of distributing a limited amount of money or resources among various activities, projects, or departments within an organization. The goal of budget allocation is to prioritize spending and ensure that resources are used efficiently to achieve the organization's objectives.\n\nHere are the general steps involved in budget allocation:\n\n1. **Identify available funds**: Determine the total amount of money available for allocation.\n2. **Establish priorities**: Identify the organization's goals and objectives, and prioritize them based on importance and urgency.\n3. **Categorize expenses**: Group expenses into categories, such as personnel, operations, marketing, and capital expenditures.\n4. **Assign weights**: Assign a weight or percentage to each category based on its priority and importance.\n5. **Allocate funds**: Allocate funds to each category based on the assigned weights and available funds.\n6. **Monitor and adjust**: Continuously monitor the budget and adjust the allocation as needed to ensure that the organization is on track to meet its objectives.\n\nTypes of budget allocation methods:\n\n1. **Zero-based budgeting**: Every expense must be justified and approved.\n2. **Incremental budgeting**: The previous year's budget is used as a starting point, and adjustments are made based on changes in circumstances.\n3. **Activity-based budgeting**: Budgets are allocated based on specific activities or projects.\n4. **Priority-based budgeting**: Budgets are allocated based on the priority of each activity or project.\n\nBenefits of effective budget allocation:\n\n1. **Improved financial management**: Ensures that resources are used efficiently and effectively.\n2. **Increased transparency**: Provides a clear understanding of how funds are being used.\n3. **Better decision-making**: Enables informed decisions about resource allocation.\n4. **Enhanced accountability**: Holds individuals and departments accountable for their budget allocations.\n\nCommon challenges in budget allocation:\n\n1. **Limited resources**: Insufficient funds to meet all needs and priorities.\n2. **Competing priorities**: Difficulty in prioritizing competing demands for resources.\n3. **Uncertainty**: Difficulty in predicting future expenses and revenues.\n4. **Inefficient allocation**: Inefficient allocation of resources, leading to waste and inefficiency.",
+          "latency_ms": 2180.3,
+          "prompt_tokens": 54,
+          "completion_tokens": 435
+        },
+        {
+          "run": 2,
+          "response": "Budget allocation refers to the process of distributing a limited amount of money or resources among various activities, projects, or departments within an organization. It involves assigning a specific amount of funds to each area based on priorities, needs, and goals.\n\nEffective budget allocation involves:\n\n1. **Identifying priorities**: Determining which areas are most important and require the most funding.\n2. **Assessing needs**: Evaluating the resources required to achieve specific goals and objectives.\n3. **Setting financial goals**: Establishing targets for revenue, expenses, and profits.\n4. **Allocating funds**: Assigning a specific amount of money to each area or project.\n5. **Monitoring and adjusting**: Regularly reviewing and adjusting the budget allocation as needed.\n\nBudget allocation can be applied to various aspects of an organization, including:\n\n1. **Departmental budgets**: Allocating funds to different departments, such as marketing, sales, or research and development.\n2. **Project budgets**: Assigning funds to specific projects or initiatives.\n3. **Operational budgets**: Allocating funds for day-to-day operations, such as salaries, utilities, and supplies.\n4. **Capital budgets**: Allocating funds for long-term investments, such as equipment, property, or technology.\n\nCommon budget allocation methods include:\n\n1. **Zero-based budgeting**: Starting from scratch and allocating funds based on current needs and priorities.\n2. **Incremental budgeting**: Adjusting the previous year's budget by a certain percentage or amount.\n3. **Activity-based budgeting**: Allocating funds based on specific activities or tasks.\n4. **Priority-based budgeting**: Allocating funds based on the priority of each area or project.\n\nEffective budget allocation is crucial for achieving organizational goals, managing resources, and ensuring financial sustainability.",
+          "latency_ms": 1822.4,
+          "prompt_tokens": 54,
+          "completion_tokens": 357
+        },
+        {
+          "run": 3,
+          "response": "Budget allocation refers to the process of distributing a limited amount of money or resources among various activities, projects, or departments within an organization. It involves assigning a specific amount of funds to each area based on priorities, needs, and goals.\n\nEffective budget allocation involves:\n\n1. **Identifying priorities**: Determining which areas are most important and require the most funding.\n2. **Assessing needs**: Evaluating the specific requirements of each area, such as personnel, equipment, and materials.\n3. **Setting goals**: Establishing clear objectives for each area and allocating funds accordingly.\n4. **Analyzing costs**: Estimating the costs associated with each area and allocating funds to minimize expenses.\n5. **Monitoring and adjusting**: Regularly reviewing budget allocation and making adjustments as needed to ensure optimal use of resources.\n\nTypes of budget allocation:\n\n1. **Zero-based budgeting**: Allocating funds based on a \"zero base,\" where every expense must be justified and approved.\n2. **Incremental budgeting**: Allocating funds based on the previous year's budget, with adjustments made for changes in priorities or needs.\n3. **Activity-based budgeting**: Allocating funds based on specific activities or projects, rather than departments or functions.\n\nBenefits of effective budget allocation:\n\n1. **Optimal resource utilization**: Ensures that resources are used efficiently and effectively.\n2. **Improved decision-making**: Provides a clear understanding of priorities and resource allocation.\n3. **Enhanced financial management**: Helps to manage costs, reduce waste, and minimize financial risks.\n4. **Increased transparency**: Provides a clear and transparent view of budget allocation and resource utilization.\n\nCommon challenges in budget allocation:\n\n1. **Limited resources**: Insufficient funds to meet all needs and priorities.\n2. **Competing priorities**: Difficulty in allocating funds among competing priorities.\n3. **Uncertainty**: Difficulty in predicting future needs and expenses.\n4. **Inefficient allocation**: Inefficient allocation of funds, leading to waste and inefficiency.\n\nBest practices for budget allocation:\n\n1. **Involve stakeholders**: Engage with stakeholders to ensure that priorities and needs are understood.\n2. **Use data and analytics**: Use data and analytics to inform budget allocation decisions.\n3. **Regularly review and adjust**: Regularly review budget allocation and make adjustments as needed.\n4. **Communicate clearly**: Communicate budget allocation decisions clearly and transparently.",
+          "latency_ms": 2110.4,
+          "prompt_tokens": 54,
+          "completion_tokens": 481
+        }
+      ],
+      "evaluations": [
+        {
+          "accuracy_score": 1,
+          "accuracy_label": "PARTIAL",
+          "hallucination_signals": 0,
+          "numbers_not_in_context": [],
+          "did_refuse": false,
+          "did_correct_premise": null,
+          "word_count": 320
+        },
+        {
+          "accuracy_score": 1,
+          "accuracy_label": "PARTIAL",
+          "hallucination_signals": 0,
+          "numbers_not_in_context": [],
+          "did_refuse": false,
+          "did_correct_premise": null,
+          "word_count": 250
+        },
+        {
+          "accuracy_score": 1,
+          "accuracy_label": "PARTIAL",
+          "hallucination_signals": 0,
+          "numbers_not_in_context": [],
+          "did_refuse": false,
+          "did_correct_premise": null,
+          "word_count": 343
+        }
+      ],
+      "consistency": {
+        "avg_jaccard": 0.3319,
+        "min_jaccard": 0.2525,
+        "consistent": false
+      },
+      "context": "NONE",
+      "summary": {
+        "avg_accuracy": 1.0,
+        "avg_hallucination": 0.0,
+        "refusal_rate": "0/3",
+        "premise_correction": "N/A"
+      }
+    }
+  },
+  "AQ4_out_of_scope": {
+    "query": "What is the exact population of Ghana in 2025?",
+    "category": "Out-of-Scope Query",
+    "false_premise": false,
+    "ground_truth": "Ghana's 2021 census population was ~30.8 million. 2025 estimate ~34 million. This is NOT in either dataset.",
+    "rag": {
+      "runs": [
+        {
+          "run": 1,
+          "response": "INSUFFICIENT CONTEXT: I cannot answer this from the provided documents.",
+          "latency_ms": 1007.5,
+          "prompt_tokens": 1114,
+          "completion_tokens": 15
+        },
+        {
+          "run": 2,
+          "response": "INSUFFICIENT CONTEXT: I cannot answer this from the provided documents.",
+          "latency_ms": 711.0,
+          "prompt_tokens": 1114,
+          "completion_tokens": 15
+        },
+        {
+          "run": 3,
+          "response": "INSUFFICIENT CONTEXT: I cannot answer this from the provided documents.",
+          "latency_ms": 582.5,
+          "prompt_tokens": 1114,
+          "completion_tokens": 15
+        }
+      ],
+      "evaluations": [
+        {
+          "accuracy_score": 1,
+          "accuracy_label": "PARTIAL",
+          "hallucination_signals": 0,
+          "numbers_not_in_context": [],
+          "did_refuse": true,
+          "did_correct_premise": null,
+          "word_count": 10
+        },
+        {
+          "accuracy_score": 1,
+          "accuracy_label": "PARTIAL",
+          "hallucination_signals": 0,
+          "numbers_not_in_context": [],
+          "did_refuse": true,
+          "did_correct_premise": null,
+          "word_count": 10
+        },
+        {
+          "accuracy_score": 1,
+          "accuracy_label": "PARTIAL",
+          "hallucination_signals": 0,
+          "numbers_not_in_context": [],
+          "did_refuse": true,
+          "did_correct_premise": null,
+          "word_count": 10
+        }
+      ],
+      "consistency": {
+        "avg_jaccard": 1.0,
+        "min_jaccard": 1.0,
+        "consistent": true
+      },
+      "context": "[Document 1 | source: budget | relevance: 0.799]\n389. Mr. Speaker, it is worth noting that this is in stark contrast to what has happened to \nthe District Assembly Common Fund (DACF) in recent years where less than 50 percent \nof the released amount to DACF goes to the District Assemblies, with a significant \nportion spent at the center. 390. Mr. Speaker, we have allocated an amount of GH¢1.5 billion for Agriculture for \nEconomic Transformation Agenda (AETA) of which Feed Ghana Programme, Ghana ...",
+      "summary": {
+        "avg_accuracy": 1.0,
+        "avg_hallucination": 0.0,
+        "refusal_rate": "3/3",
+        "premise_correction": "N/A"
+      }
+    },
+    "pure_llm": {
+      "runs": [
+        {
+          "run": 1,
+          "response": "I don't have real-time access to current data, and population figures can fluctuate constantly due to various factors such as births, deaths, and migration. As my knowledge cutoff is December 2023, I don't have the exact population of Ghana in 2025.\n\nHowever, according to the United Nations Department of Economic and Social Affairs, the estimated population of Ghana in 2023 was approximately 32.9 million. To get the most up-to-date and accurate population figure for Ghana in 2025, I recommend checking the latest data from reliable sources such as the Ghana Statistical Service, the World Bank, or the United Nations.",
+          "latency_ms": 918.7,
+          "prompt_tokens": 63,
+          "completion_tokens": 130
+        },
+        {
+          "run": 2,
+          "response": "I don't have real-time access to current data, and population figures can fluctuate constantly due to various factors such as births, deaths, and migration. As my knowledge cutoff is December 2023, I don't have the exact population of Ghana in 2025.\n\nHowever, according to the United Nations Department of Economic and Social Affairs, the estimated population of Ghana in 2023 was approximately 32.9 million. To get the most up-to-date and accurate population figures, I recommend checking with reliable sources such as the Ghana Statistical Service or the United Nations for the latest estimates.",
+          "latency_ms": 957.2,
+          "prompt_tokens": 63,
+          "completion_tokens": 120
+        },
+        {
+          "run": 3,
+          "response": "I don't have real-time access to current data, and population figures can fluctuate constantly due to various factors such as births, deaths, and migration. However, I can provide you with some information based on available data and projections.\n\nAccording to the United Nations Department of Economic and Social Affairs, the estimated population of Ghana in 2020 was approximately 31.2 million. The UN also provides medium-variant projections, which estimate the population of Ghana to be around 34.2 million in 2025.\n\nPlease note that these projections are based on historical trends and assumptions about future fertility rates, mortality rates, and migration patterns. The actual population of Ghana in 2025 may differ from these projections due to various factors, including changes in government policies, economic conditions, and other demographic factors.\n\nFor the most up-to-date and accurate information, I recommend checking with the Ghana Statistical Service or other reliable sources that provide population data.",
+          "latency_ms": 979.5,
+          "prompt_tokens": 63,
+          "completion_tokens": 189
+        }
+      ],
+      "evaluations": [
+        {
+          "accuracy_score": 1,
+          "accuracy_label": "PARTIAL",
+          "hallucination_signals": 1,
+          "numbers_not_in_context": [
+            "2023",
+            "2025",
+            "2023",
+            "32.9",
+            "2025"
+          ],
+          "did_refuse": true,
+          "did_correct_premise": null,
+          "word_count": 99
+        },
+        {
+          "accuracy_score": 1,
+          "accuracy_label": "PARTIAL",
+          "hallucination_signals": 1,
+          "numbers_not_in_context": [
+            "2023",
+            "2025",
+            "2023",
+            "32.9"
+          ],
+          "did_refuse": true,
+          "did_correct_premise": null,
+          "word_count": 93
+        },
+        {
+          "accuracy_score": 1,
+          "accuracy_label": "PARTIAL",
+          "hallucination_signals": 1,
+          "numbers_not_in_context": [
+            "2020",
+            "31.2",
+            "34.2",
+            "2025",
+            "2025"
+          ],
+          "did_refuse": true,
+          "did_correct_premise": null,
+          "word_count": 150
+        }
+      ],
+      "consistency": {
+        "avg_jaccard": 0.6217,
+        "min_jaccard": 0.4792,
+        "consistent": true
+      },
+      "context": "NONE",
+      "summary": {
+        "avg_accuracy": 1.0,
+        "avg_hallucination": 1.0,
+        "refusal_rate": "3/3",
+        "premise_correction": "N/A"
+      }
+    }
+  }
+}
