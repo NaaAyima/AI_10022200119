@@ -194,17 +194,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # -------------------------------------------------------------------
-# Header HTML
+# (Header moved to Hero Section below)
 # -------------------------------------------------------------------
-st.markdown("""
-<div class="header-container">
-    <div class="header-icon">🏛️ ⚖️</div>
-    <div>
-        <h1 class="header-title">GovLens AI</h1>
-        <p class="header-subtitle">Budget & Election Information Assistant</p>
-    </div>
-</div>
-""", unsafe_allow_html=True)
 
 if not os.getenv("GROQ_API_KEY"):
     st.error("Missing GROQ_API_KEY in `.env` file. Please add it to talk to the LLM.")
@@ -235,8 +226,11 @@ with st.sidebar:
 if len(st.session_state.messages) == 0:
     st.markdown("""
     <div class="hero-container">
-        <div class="hero-icon">💬</div>
-        <h2 class="hero-title">Ask about government budgets and elections</h2>
+        <div style="font-size: 60px; margin-bottom: 0px;">🏛️ ⚖️</div>
+        <h1 style="color: #0c2340; font-size: 42px; font-weight: 800; margin-top: 10px; margin-bottom: 5px;">GovLens AI</h1>
+        <p style="color: #637b96; font-size: 18px; margin-bottom: 25px;">Budget & Election Information Assistant</p>
+        
+        <h2 class="hero-title" style="margin-top: 20px;">Ask about government budgets and elections</h2>
         <p class="hero-subtitle">Get data-driven answers backed by official sources</p>
     </div>
     """, unsafe_allow_html=True)
