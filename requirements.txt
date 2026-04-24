@@ -25,7 +25,8 @@ matplotlib>=3.7.0
 seaborn>=0.12.0
 
 # ── LLM (Part C / D) ─────────────────────────────────────────────────────────
-openai>=1.10.0           # or use a free alternative like groq/together
+groq>=0.4.0
+python-dotenv>=1.0.0
 
 # ── UI (Final Deliverable) ────────────────────────────────────────────────────
 streamlit>=1.33.0
