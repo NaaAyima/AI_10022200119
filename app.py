@@ -61,7 +61,8 @@ def load_rag_pipeline():
 # -------------------------------------------------------------------
 # Streamlit Interface & Custom CSS (Gold & Blue Theme)
 # -------------------------------------------------------------------
-st.set_page_config(page_title="GovLens AI", page_icon="🏛️", layout="wide")
+favicon_path = str(ROOT / "logo.png") if os.path.exists(str(ROOT / "logo.png")) else "🏛️"
+st.set_page_config(page_title="GovLens AI", page_icon=favicon_path, layout="wide")
 
 st.markdown("""
 <style>
