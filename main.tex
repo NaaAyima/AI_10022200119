@@ -133,7 +133,9 @@ To solve the aforementioned cross-domain contamination directly, the project int
 This class overrides standard vector retrieval by passing the prompt through an immediate heuristic string classifier utilizing domain trigger sets (\texttt{\{"budget", "expenditure", "revenue"\}} vs \texttt{\{"election", "vote", "constituency"\}}). Any resultant FAISS chunk whose internal domain tag heavily mismatches the classified prompt intent suffers a massive scoring penalty, serving as an absolute filter mechanism. Matching chunks receive a 1.6x multiplier, vastly improving isolation fidelity.
 
 \section{Deployment}
-GovLens is publicly manifested as an interactive frontend using the \texttt{streamlit} framework and deployed seamlessly on Render. The UI \texttt{app.py} relies on heavily custom CSS, injecting specific branding (GovLens AI blue and gold layout), custom favicons, and click-to-fill interactive test queries. 
+GovLens is publicly manifested as an interactive frontend using the \texttt{streamlit} framework and deployed seamlessly on Render. The live application is accessible at: \url{https://govslens-ai.onrender.com/}.
+
+The UI \texttt{app.py} relies on heavily custom CSS, injecting specific branding (GovLens AI blue and gold layout), custom favicons, and click-to-fill interactive test queries. 
 To bypass severe latency bottlenecks standard to Render's 512MB RAM free tier, an explicit CI/CD build matrix (\texttt{build.sh} inside \texttt{render.yaml}) was written capable of stripping out CUDA libraries, forcing lightweight CPU-PyTorch architectures, and actively pre-downloading the \texttt{sentence-transformers} checkpoint pre-runtime to circumvent container spin-up stalling.
 
 \begin{figure}[H]
