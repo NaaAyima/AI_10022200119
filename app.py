@@ -148,17 +148,7 @@ st.markdown("""
     /* Chat Messages styling */
     .stChatMessage {
         background-color: transparent !important;
-    }
-    .stChatMessage[data-testid="stChatMessage"]:nth-child(even) {
-        background-color: rgba(212, 175, 55, 0.05) !important; /* light gold tint for assistant */
-        border-left: 4px solid #d4af37;
-        padding-left: 1rem;
-        border-radius: 4px;
-    }
-    .stChatMessage[data-testid="stChatMessage"]:nth-child(odd) {
-        border-left: 4px solid #0c2340;
-        padding-left: 1rem;
-        border-radius: 4px;
+        color: #0c2340 !important; /* Force text color to be visible */
     }
     
     /* Input Area - Gold Accent */
@@ -173,14 +163,24 @@ st.markdown("""
 
     /* Buttons */
     .stButton>button {
-        background-color: #637b96;
-        color: white;
+        background-color: #ffffff;
+        color: #0c2340;
         border-radius: 6px;
-        border: none;
+        border: 1px solid #d0dae5;
+        width: 100%;
+        height: 100%;
+        text-align: left;
+        padding: 15px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        white-space: normal;
     }
     .stButton>button:hover {
-        background-color: #0c2340;
-        color: #d4af37;
+        border-color: #d4af37; /* Gold border on hover */
+        box-shadow: 0 6px 12px -2px rgba(212, 175, 55, 0.3);
+        transform: translateY(-2px);
+        color: #0c2340;
     }
 
     /* Expander styling */
@@ -189,12 +189,6 @@ st.markdown("""
         background-color: #ffffff !important;
         border: 1px solid #d0dae5 !important;
         border-radius: 6px;
-    }
-    
-    /* Primary colour overrides for Streamlit elements */
-    :root {
-        --primary-color: #d4af37; /* Gold */
-        --text-color: #0c2340;    /* Navy Blue */
     }
 </style>
 """, unsafe_allow_html=True)
@@ -247,34 +241,49 @@ if len(st.session_state.messages) == 0:
     </div>
     """, unsafe_allow_html=True)
 
-    # 4 Suggested Questions
+    # 4 Suggested Questions as clickable buttons
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown('<div class="stCard">What is the total national budget projection for 2025?</div>', unsafe_allow_html=True)
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown('<div class="stCard">What percentage of votes did NPP win in the 2020 election?</div>', unsafe_allow_html=True)
+        q1 = st.button("What is the total national budget projection for 2025?")
+        q2 = st.button("What percentage of votes did NPP win in the 2020 election?")
     with col2:
-        st.markdown('<div class="stCard">Show me the election results for the 2016 presidential election</div>', unsafe_allow_html=True)
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown('<div class="stCard">How has primary expenditure as a percentage of GDP changed?</div>', unsafe_allow_html=True)
+        q3 = st.button("Show me the election results for the 2016 presidential election")
+        q4 = st.button("How has primary expenditure as a percentage of GDP changed?")
     
     st.markdown("<br><br>", unsafe_allow_html=True)
+    
+    # If a button is clicked, set it as the prompt
+    if q1: st.session_state.button_clicked = "What is the total national budget projection for 2025?"
+    if q2: st.session_state.button_clicked = "What percentage of votes did NPP win in the 2020 election?"
+    if q3: st.session_state.button_clicked = "Show me the election results for the 2016 presidential election"
+    if q4: st.session_state.button_clicked = "How has primary expenditure as a percentage of GDP changed?"
 
 
 # Display Chat History
 for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
-        st.markdown(msg["content"])
-        if "chunks" in msg:
-            with st.expander("🔍 View Retrieved Context"):
-                for c in msg["chunks"]:
-                    boost_tag = "🚀 Boosted (Domain Router)" if c.get("innovation_boost") else ""
-                    st.markdown(f"**Source**: `{c['source']}` | **Score**: `{c['hybrid_score']:.3f}` {boost_tag}")
-                    st.text(c['text'])
+    if msg["role"] == "assistant":
+        with st.chat_message("assistant", avatar="🏛️"):
+            st.markdown(f"**GovLens AI**")
+            st.markdown(msg["content"])
+            if "chunks" in msg:
+                with st.expander("🔍 View Retrieved Context"):
+                    for c in msg["chunks"]:
+                        boost_tag = "🚀 Boosted (Domain Router)" if c.get("innovation_boost") else ""
+                        st.markdown(f"**Source**: `{c['source']}` | **Score**: `{c['hybrid_score']:.3f}` {boost_tag}")
+                        st.text(c['text'])
+    else:
+        with st.chat_message("user", avatar="👤"):
+            st.markdown(f"**You**")
+            st.markdown(msg["content"])
 
 
 # Input area
 prompt = st.chat_input("Ask about budgets, elections, or policy data...")
+
+# Check if a button was clicked or text was entered
+if hasattr(st.session_state, 'button_clicked') and st.session_state.button_clicked:
+    prompt = st.session_state.button_clicked
+    del st.session_state.button_clicked
 
 if prompt:
     # Add user message
